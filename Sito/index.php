@@ -41,10 +41,10 @@
             <!-- Catalogo pizze -->
             <li><a href="pizze.php">Le Nostre Pizze</a></li>
 
-                        <!-- Login -->
+            <!-- Login -->
             <li><a href="#" data-toggle="modal" data-target="#myModal">Login/Registrazione</a></li>
             <!-- Modulo Login -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -87,6 +87,61 @@
             </div>
 
             <!-- Modulo Registrazione -->
+            <?php
+                require "functions.php";
+
+                if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+                    $loginErr = $nomeErr = $cognomeErr = $indirizzoErr = $passwordErr = "";
+                    $login = $nome = $cognome = $indirizzo = $password =  "";
+                    $telefonoErr = 0;
+                    $telefono = 0;
+
+                    if (empty($_POST["login"])) {
+                        $loginErr = "Username mancante!";
+                    }  
+                    if (empty($_POST["nome"])) {
+                        $nomeErr = "Nome mancante!";
+                    }  
+                    if (empty($_POST["cognome"])) {
+                        $cognomeErr = "Cognome mancante!";
+                    }
+                    if (empty($_POST["indirizzo"])) {
+                        $indirizzoErr = "Indirizzo mancante!";
+                    }
+                    if (empty($_POST["password"])) {
+                        $passwordErr = "Password mancante!";
+                    }
+                    if (empty($_POST["telefono"])) {
+                        $telefonoErr = "N° telefono mancante!";
+                    }
+                    else {
+                    try{  
+                        $dbconn = db_connection();
+                        $statement = $dbconn->prepare('select count (*) from utenti where login = ?');
+                        $statement->execute(array($_POST['login']));
+                        $rec = $statement->fetch();
+                        if ($rec[0] == 1) {               
+                            header('Location:registrazione.php?errore=utenteesistente');
+                        }
+                        else{
+                            session_start();
+                            $_SESSION['login'] = $_POST['login'];
+                            /*$stat = $dbconn->prepare('select crea_utente(?,?,?,?,?,?,?)');
+                            $stat->execute(array($_POST['username'],$_POST['nome'],$_POST['cognome'],$_POST['indirizzo'],$_POST['password'],F,$_POST['telefono']));*/
+                            inserisci_utente($dbconn);
+                            echo "<font color=darkgreen face=arial><b>Registrazione effettuata</b></font><br>";
+                            /*header('Location:index.php=registrazioneffettuata');*/
+                        }
+                    } catch (PDOException $e) { echo $e->getMessage(); }
+                }
+                }
+                else {
+                    $error = "Questo non dovrebbe succedere!";
+                }
+
+            ?>
+            
             <div class="modal fade" id="registrazione" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog">
@@ -97,35 +152,38 @@
                         </div>
 
                         <div class="modal-body">
-                            <form role="form" action="registrazione.php" method="post">
+                            <form role="form" method="post">
                             	<div class="form-group">
                             		<div class="input-group">
-                                		<input type="text" class="form-control" id="rUsername" placeholder="Username" name="login">
+                                		<input type="text" class="form-control" id="rUsername" placeholder="Username" name="login"> 
                                         <label for="uPassword" class="input-group-addon glyphicon glyphicon-user"></label>
                             		</div>
+                                    <span class="error">* <?php echo $loginErr;?> </span>
                         		</div>
-
+    
                                 <div class="form-group">
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="rNome" placeholder="Nome" name="nome">
                                         <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
                             		</div>
+                                    <span class="error">* <?php echo $nomeErr;?> </span>
                         		</div>
 
                                 <div class="form-group">
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="rCognome" placeholder="Cognome" name="cognome">
-                                        <label for="uPassword"
-                                               class="input-group-addon glyphicon glyphicon-user"></label>
+                                        <label for="uPassword" class="input-group-addon glyphicon glyphicon-user"></label>
                                     </div>
+                                    <span class="error">* <?php echo $cognomeErr;?> </span>
                                 </div>
 
 
                                 <div class="form-group">
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="rIndirizzo" placeholder="Indirizzo" name="indirizzo">
-                                        <label class="input-group-addon glyphicon glyphicon-user"></label>
+                                        <label class="input-group-addon glyphicon glyphicon-bookmark"></label>
                             		</div>
+                                    <span class="error">* <?php echo $indirizzoErr;?> </span>
                         		</div>
 
                         		<div class="form-group">
@@ -135,21 +193,17 @@
                                         <label for="uPassword"
                                                class="input-group-addon glyphicon glyphicon-lock"></label>
                                     </div>
+                                    <span class="error">* <?php echo $passwordErr;?> </span>
                                 </div>
 
                         		<div class="form-group">
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="rTelefono" placeholder="N° telefono" name="telefono">
-                                        <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
+                                        <label for="uLogin" class="input-group-addon glyphicon glyphicon-phone"></label>
                             		</div>
+                                    <span class="error">*  <?php echo $telefonoErr;?></span>
                         		</div>
-                        	<div class="modal-footer">
-                        		<?php
-                        			if ($_GET['errore'] == 'campivuoti') { 
-      									echo "<font color=crimson face=arial><b>Non hai inserito tutti i dati!</b></font><br>";
-									}
-								?>
-							</div>
+                                <?php echo $error; ?>
                             <div class="modal-footer">
                             <button type="submit" class="form-control btn btn-primary">Registrazione</button>
                         	</div>

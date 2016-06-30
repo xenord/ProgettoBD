@@ -20,14 +20,35 @@ require "functions.php";
 if($_SERVER['REQUEST_METHOD'] === 'POST')
 {
 
-    if(!(isset($_POST['Registrazione'])))
+    if((isset($_POST['Registrazione'])))
     {
         /*echo"bottone premuto";*/
         
-        if (empty($_POST['login']) ||empty($_POST['nome']) || empty($_POST['cognome']) || empty($_POST['indirizzo']) || empty ($_POST['password']) ||empty($_POST['telefono']))
-        {
-            header('Location:index.php?errore=campivuoti');
-        }
+        /*if (empty($_POST['login']) ||empty($_POST['nome']) || empty($_POST['cognome']) || empty($_POST['indirizzo']) || empty ($_POST['password']) ||empty($_POST['telefono']))
+        {*/
+                $loginErr = $nomeErr = $cognomeErr = $indirizzoErr = $passwordErr = $telefonoErr = "";
+                $login = $nome = $cognome = $indirizzo = $password = $telefono =  "";
+                /*if ($_SERVER["REQUEST_METHOD"] == "POST") { */
+                    if (empty($_POST["login"])) {
+                        $loginErr = "Username mancante!";
+                    }  
+                    if (empty($_POST["nome"])) {
+                        $nomeErr = "Nome mancante!";
+                    }  
+                    if (empty($_POST["cognome"])) {
+                        $cognomeErr = "Cognome mancante!";
+                    }
+                    if (empty($_POST["indirizzo"])) {
+                        $indirizzoErr = "Indirizzo mancante!";
+                    }
+                    if (empty($_POST["password"])) {
+                        $passwordErr = "Password mancante!";
+                    }
+                    if (empty($_POST["telefono"])) {
+                        $telefonoErr = "N° telefono mancante!";
+                    }
+                //}
+
         
         else
         {
@@ -56,13 +77,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         } catch (PDOException $e) { echo $e->getMessage(); }
         }
     }
+}
     
     else
     {
         echo"non è stato premuto";
     
     }
-}
 
 
 
