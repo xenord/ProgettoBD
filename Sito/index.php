@@ -42,7 +42,7 @@
             <li><a href="pizze.php">Le Nostre Pizze</a></li>
 
                         <!-- Login -->
-            <li><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#myModal">Login/Registrazione</a></li>
             <!-- Modulo Login -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                  aria-hidden="true">
@@ -225,7 +225,7 @@
 <div class="container">
     <footer>
         <hr class="featurette-divider">
-        <p class="pull-right"><a href="homepage.html">Top</a></p>
+        <p class="pull-right"><a href="index.php">Top</a></p>
 
         <p>© 2016, Basi Di Dati, Pizzeria Online <a href="contacts.html">Contatti</a></p>
 

@@ -38,11 +38,13 @@
     <div class="navbar-collapse collapse ">
         <ul class="nav navbar-nav">
 
-            <!-- Fotogallery -->
+            <!-- Catalogo pizze -->
             <li><a href="pizze.php">Le Nostre Pizze</a></li>
 
             <!-- Login -->
-            <li><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#myModal">Login/Registrazione</a></li>
+
+            
             <!-- Modulo Login -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                  aria-hidden="true">
