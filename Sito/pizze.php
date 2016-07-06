@@ -174,32 +174,36 @@
 
 
 <!-- In Evidenza -->
-<body>
-    
-    <h1 style="text-align:center;font-family:arial;">Catalogo pizze</h1>
-        
-    <table border=1 style='width:100%;text-align:center;font-family:arial;font-size:18px;border-collapse: collapse;'>
-             <tr>
-                <th>Nome:</th>
-                <th>Prezzo:</th>            
-            </tr>
-            <tr>
-                <?php  
-                    require "functions.php";
-                         
-                    $dbconn = db_connection();
-                         
-                    $res=lista_pizze($dbconn); 
-                         
-                    foreach($res as $rec)
-                    {
-                        echo"<tr><td>$rec[nome]<br>\nIngredienti:$rec[ingredienti]</td><td>$rec[prezzo] euro </td></tr>";
-                        
-                    }
-                ?>                             
-            </tr>
-    </table>   
-</body>
+    <br>
+    <br>       
+    <div class="container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nome pizza: </th>
+                    <th>Ingredienti: </th>
+                    <th>Prezzo: </th>
+                </tr>
+            </thead>
+    <?php
+        require "functions.php";
+        try {
+            $dbconn=db_connection();
+            echo $_GET['pizzasearch'];
+            $res=lista_pizze($dbconn); 
+            foreach($res as $rec) {
+            echo "<tbody>
+                <tr>
+                    <td>$rec[nome] </td>
+                    <td>$rec[ingredienti] </td>
+                    <td>$rec[prezzo] €</td>
+                </tr>
+            </tbody>";
+            }     
+        }catch (PDOException $e) { echo $e->getMessage(); }
+    ?>
+        </table>
+    </div>
 
 <br>
 
