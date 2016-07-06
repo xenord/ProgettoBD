@@ -1,41 +1,32 @@
-<body>
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title> Progetto Basi Di Dati </title>
+        <meta http- equiv="content-type" content="text/html" charset="UTF-8" lang="it-IT">
+    </head>
+
     
-    <h1 style="text-align:center;font-family:arial;">Catalogo pizze</h1>
+    <body style="background-color:skyblue;font-family:arial;">
+    
+        <h1 style="text-align:center;"> Under construction (pagina amministratore)</h1>
         
-    <table border=1 style='width:100%;text-align:center;font-family:arial;font-size:18px;border-collapse: collapse;'>
-             <tr>
-                <th>Nome:</th>
-                <th>Prezzo:</th>            
-            </tr>
-            <tr>
                 <?php  
-                    require "functions.php";
-                         
-                    $dbconn = db_connection();
-                         
-                    $res=lista_pizze($dbconn); 
-                         
-                    foreach($res as $rec)
-                    {
-                        echo"<tr><td>$rec[nome]<br>\nIngredienti:$rec[ingredienti]</td><td>$rec[prezzo] euro </td></tr>";
-                        
-                    }
-
-                ?>                             
-            </tr>
-    </table> 
-
-    <table>
-        <tr>Nome:</tr><td><input type="text" name="nome"><</tr>
-        <tr>Prezzo:</tr><td><input type="text" name="cognome"></tr>
-        <tr>Lista Ingredienti:</tr><td><input type="text" name="lista_ingredienti"></tr>
-
-
-
-
-
-
-
-
-    </table>  
-</body>
+            require "functions.php"; 
+            verifica_accesso();
+            
+                
+        ?>
+                  <h2>Benvenuto nella pagina di amministratore ecco quello che puoi fare:</h2>
+  <ul>
+    <li> <a href="lista_ordini.php"><Button style="text-align:center;">Elencare tutti gli ordini effettuati</button></a> </li><br>
+    <li> <a href="crea_ordine.php"><Button style="text-align:center;">Creare un nuovo ordine</button></a> </li><br>
+    <li> <a href="crea_ordini.php"><Button style="text-align:center;">Cancellare un' ordine</button></a> </li><br>
+        <li> <a href="pizze.php"><Button style="text-align:center;">Visualizzare le pizze(potrebbe non servire)</button></a> </li><br>
+    <li> <a href="personale.php">Vedere i tuoi dati personali(potrebbe non servire)</a> </li><br>
+    <li> <a href="logout.php"><Button style="text-align:center;">Effettuare il logout</button></a></li><br>
+  </ul>
+        
+            
+    </body>
+    </head>
+</html>
