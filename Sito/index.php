@@ -13,6 +13,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/personal.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <!-- Titolo -->
     <title>Progetto Basi Di Dati</title>
 </head>
@@ -79,7 +80,7 @@
                                 <a data-toggle="modal" data-target="#registrazione">Non sei ancora Registrato?</a>
                         </div>
                         <div class="modal-footer">
-                            <button class="form-control btn btn-primary">Accedi</button>
+                            <button type="Submit" value="Accedi" class="form-control btn btn-primary">Accedi</button>
                         </div>
                             </form>
                     </div>
@@ -88,6 +89,7 @@
 
             <!-- Modulo Registrazione -->
             <?php
+            /*
                 require "functions.php";
 
                 if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -127,11 +129,9 @@
                         else{
                             session_start();
                             $_SESSION['login'] = $_POST['login'];
-                            /*$stat = $dbconn->prepare('select crea_utente(?,?,?,?,?,?,?)');
-                            $stat->execute(array($_POST['username'],$_POST['nome'],$_POST['cognome'],$_POST['indirizzo'],$_POST['password'],F,$_POST['telefono']));*/
+
                             inserisci_utente($dbconn);
                             echo "<font color=darkgreen face=arial><b>Registrazione effettuata</b></font><br>";
-                            /*header('Location:index.php=registrazioneffettuata');*/
                         }
                     } catch (PDOException $e) { echo $e->getMessage(); }
                 }
@@ -139,7 +139,7 @@
                 else {
                     $error = "Questo non dovrebbe succedere!";
                 }
-
+                */
             ?>
             
             <div class="modal fade" id="registrazione" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -152,13 +152,12 @@
                         </div>
 
                         <div class="modal-body">
-                            <form role="form" method="post">
+                            <form role="form" action="registrazione.php" method="post">
                             	<div class="form-group">
                             		<div class="input-group">
                                 		<input type="text" class="form-control" id="rUsername" placeholder="Username" name="login"> 
                                         <label for="uPassword" class="input-group-addon glyphicon glyphicon-user"></label>
                             		</div>
-                                    <span class="error">* <?php echo $loginErr;?> </span>
                         		</div>
     
                                 <div class="form-group">
@@ -166,7 +165,6 @@
                                         <input type="text" class="form-control" id="rNome" placeholder="Nome" name="nome">
                                         <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
                             		</div>
-                                    <span class="error">* <?php echo $nomeErr;?> </span>
                         		</div>
 
                                 <div class="form-group">
@@ -174,7 +172,6 @@
                                         <input type="text" class="form-control" id="rCognome" placeholder="Cognome" name="cognome">
                                         <label for="uPassword" class="input-group-addon glyphicon glyphicon-user"></label>
                                     </div>
-                                    <span class="error">* <?php echo $cognomeErr;?> </span>
                                 </div>
 
 
@@ -183,7 +180,6 @@
                                         <input type="text" class="form-control" id="rIndirizzo" placeholder="Indirizzo" name="indirizzo">
                                         <label class="input-group-addon glyphicon glyphicon-bookmark"></label>
                             		</div>
-                                    <span class="error">* <?php echo $indirizzoErr;?> </span>
                         		</div>
 
                         		<div class="form-group">
@@ -193,7 +189,6 @@
                                         <label for="uPassword"
                                                class="input-group-addon glyphicon glyphicon-lock"></label>
                                     </div>
-                                    <span class="error">* <?php echo $passwordErr;?> </span>
                                 </div>
 
                         		<div class="form-group">
@@ -201,12 +196,23 @@
                                         <input type="text" class="form-control" id="rTelefono" placeholder="N° telefono" name="telefono">
                                         <label for="uLogin" class="input-group-addon glyphicon glyphicon-phone"></label>
                             		</div>
-                                    <span class="error">*  <?php echo $telefonoErr;?></span>
                         		</div>
-                                <?php echo $error; ?>
                             <div class="modal-footer">
-                            <button type="submit" class="form-control btn btn-primary">Registrazione</button>
+                            <button type="submit" class="form-control btn btn-primary" value="Registrazione" >Registrazione</button>
                         	</div>
+                            <?php
+                                if ($_GET['errore'] == 'campivuoti') { 
+                                    echo "<font color=crimson><b>Non hai inserito tutti i dati!!!</b></font><br>";
+                                }
+
+                                elseif ($_GET['errore'] == 'erroretelefono') { 
+                                    echo "<font color=crimson><b>Il numero di telefono deve contenere cifre comprese tra 0 e 9</b></font><br>";
+                                }
+
+                                elseif($_GET['errore'] == 'utenteesistente') {
+                                    echo "<font color=crimson><b>Utente già registrato</b></font><br>";
+                                }
+                            ?>
 
                             </form>
                         </div>
@@ -223,6 +229,11 @@
 
         <!-- Funzione ricerca -->
         <ul class="nav navbar-nav navbar-right">
+            <?php
+                if($_GET['errore'] == 'ricercavuota') {
+                    echo "<font color=crimson><b>Inserisci il nome della pizza</b></font><br>";
+                }
+            ?>
             <form action="ricerca.php" method="post" class="navbar-form navbar-right" role="search">
                 <!-- Campo compilabile -->
                 <div class="form-group">
