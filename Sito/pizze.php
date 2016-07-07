@@ -13,8 +13,9 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/personal.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <!-- Titolo -->
-    <title>Progetto Basi Di Dati</title>
+    <title>Menù</title>
 </head>
 
 <body>
@@ -210,34 +211,7 @@
     </div>
 
 <br>
-
-<!-- Tag Sociali + gerarchia -->
-<div class="container hidden-print">
-    <div class="row">
-    <hr class="featurette-divider">
-        <!-- gerarchia -->
-    <div class="col-lg-6 col-md-6 col-sm-12 ">        
-        <p><a class="btn btn-lg btn-default gerarchia-btn" href="#" role="button">Gerarchia del sito</a></p>
-        </div>
-        <!-- TAG SOCIALI -->
-    <div class="col-lg-6 col-md-6 hidden-xs hidden-sm hidden-print tag-sociali">
-        <!-- Inseriamo un nuovo div di classe panel panel-default -->
-        <div class="panel panel-default">
-            
-            <div class="panel-heading">
-                <h3 class="panel-title">Tag Sociali</h3>
-            </div>
-            <div class="panel-body">
-                <h2><a href="index.php">Pizzeria</a></h2>
-
-                <h4><a href="pizze.php">Margherita</a></h4>
-
-                <h2><a href="ordini.php">Ordina Adesso!</a></h2>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+<br>
     
 
 <!-- Footer -->
