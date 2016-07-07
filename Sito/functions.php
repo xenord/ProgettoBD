@@ -57,6 +57,7 @@ error_reporting(E_ALL & ~E_NOTICE);
         
     }
 
+
     
     
     /*function inserisci_utente($dbconn)
@@ -104,6 +105,19 @@ $$ language sql;
             return $stat;
     }
     
+        function stampa_ordini($dbconn)
+    {
+            $stat=$dbconn->prepare('select nome,cognome,indirizzo,login,numerotelefono from utenti where login=?');
+            $stat->execute(array($_SESSION['login']));
+            foreach($stat as $record) 
+            {
+                echo "<font face=arial> <br>username: $record[login] <br> nome: $record[nome]<br> cognome: $record[cognome]<br> indirizzo: $record[indirizzo] <br> numero di telefono: $record[numerotelefono]</font><br>";     
+            }
+            
+            return $stat;
+    }
+    
+
 
     
 
