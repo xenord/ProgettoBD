@@ -157,14 +157,18 @@
 
         <!-- Funzione ricerca -->
         <ul class="nav navbar-nav navbar-right">
-            <form class="navbar-form navbar-right" role="search">
+            <?php
+                if($_GET['errore'] == 'ricercavuota') {
+                    echo "<font color=crimson><b>Inserisci il nome della pizza</b></font><br>";
+                }
+            ?>
+            <form action="ricerca.php" method="post" class="navbar-form navbar-right" role="search">
                 <!-- Campo compilabile -->
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Cerca">
+                    <input type="text" class="form-control" placeholder="Cerca pizza" name ="pizzasearch">
                 </div>
                 <!-- Pulsante di ricerca -->
-                <button type="submit" class="btn btn-default"><a href="pagine/risultati-ricerca.html">Ricerca</a>
-                </button>
+                <button type="submit" class="btn btn-default">Ricerca</button>
             </form>
         </ul>
 

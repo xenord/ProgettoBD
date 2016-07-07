@@ -26,30 +26,40 @@
              <tr>   --> 
     
                 <div class="container">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>Nome pizza: </th>
-                            <th>Ingredienti: </th>
-                            <th>Prezzo: </th>
-                        </tr>
-                        </thead>
                         <?php
                             require "functions.php";
                                 try {
                                     $dbconn=db_connection();
                                     echo $_GET['pizzasearch'];
-                                    $ris=cerca_pizze($dbconn, $_POST['pizzasearch']);
-                                        if($ris>0){
-                                            foreach($ris as $rec) {
-                                                echo "<tbody>
-                                                    <tr>
-                                                        <td>$rec[nome] </td>
-                                                        <td>$rec[ingredienti] </td>
-                                                        <td>$rec[prezzo] €</td>
-                                                    </tr>
-                                                </tbody>";
+                                    $prova=cerca_pizze($dbconn, $_POST['pizzasearch']);
+                                    if($prova>0){
+                                        $ciao= 0;
+                                        foreach ($prova as $provo ) {
+                                            $ciao = $ciao +1;
+                                        }
+                                        if($ciao){
+                                            $dbconn=db_connection();
+                                             echo $_GET['pizzasearch'];
+                                            $ris=cerca_pizze($dbconn, $_POST['pizzasearch']);
+                                            echo "<table class='table table-bordered'>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nome pizza: </th>
+                                                            <th>Ingredienti: </th>
+                                                            <th>Prezzo: </th>
+                                                        </tr>
+                                                    </thead>";
+                                                foreach($ris as $rec) {
+                                                    echo "<tbody>
+                                                        <tr>
+                                                            <td>$rec[nome] </td>
+                                                            <td>$rec[ingredienti] </td>
+                                                            <td>$rec[prezzo] €</td>
+                                                        </tr>
+                                                    </tbody>";
+                                                }
                                             }
+                                            else echo "<h1>Non sono state trovate pizze</h1>";
                                         }
                                         else {
                                             header('Location:index.php?errore=ricercavuota');
