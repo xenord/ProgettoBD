@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/personal.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <!-- Titolo -->
-    <title>Progetto Basi Di Dati</title>
+    <title>Homepage</title>
 </head>
 
 <body>
@@ -139,6 +139,10 @@
     <!-- modulo login -->
 <br>
 <br>
+<h1 style="text-align:center;">Accedi per ordinare!</h1>
+<br>
+<br>
+<h3>Sei nuovo? <a href="#registrazione">Registrati subito!</a></h3>
 <br>
 <br>
 <section id="login" class="login"> 
@@ -176,6 +180,11 @@
 </div>
 </section>
 
+<br>
+<br>
+<br>
+<br>
+<hr class="featurette-divider">
 <br>
 <br>
 <br>
@@ -291,7 +300,7 @@
 <div class="container">
     <footer>
         <hr class="featurette-divider">
-        <p class="pull-right"><a href="index.php">Top</a></p>
+        <p class="pull-right"><a href="index.php">Torna su</a></p>
 
         <p>© 2016, Basi Di Dati, Pizzeria Online <a href="contacts.html">Contatti</a></p>
 

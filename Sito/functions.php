@@ -22,12 +22,9 @@ error_reporting(E_ALL & ~E_NOTICE);
         
     function query_utenti_registrati($dbconn)
     {
-            $stat=$dbconn->prepare('select * from utenti');
+            $stat=$dbconn->prepare('select login, nome, cognome, indirizzo, numerotelefono from utenti');
             $stat->execute();
-            foreach($stat as $record) 
-            {
-                echo "<font face=arial> username: $record[login] nome: $record[nome] cognome: $record[cognome] indirizzo: $record[indirizzo] password: $record[password] </font><br>";     
-            }
+
             
             return $stat;
     }

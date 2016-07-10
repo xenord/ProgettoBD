@@ -20,7 +20,7 @@
                     $stat->execute(array($_POST['login']));
                     $res = $stat->fetch();  
                     if($res[0]==true) {
-                        header('Location:admin.php');
+                        header('Location: admin/admin.php');
                         session_start();                            
                         $_SESSION['login'] = $_POST['login'];
                     }
