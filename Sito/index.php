@@ -139,14 +139,12 @@
     <!-- modulo login -->
 <br>
 <br>
-<h1 style="text-align:center;">Accedi per ordinare!</h1>
+<h2 style="text-align:center;">Accedi per ordinare!</h2>
 <br>
-<br>
-<h3>Sei nuovo? <a href="#registrazione">Registrati subito!</a></h3>
 <br>
 <br>
 <section id="login" class="login"> 
-    <div class="container">
+    <div class="container" style="width: 500px; text-align:center;">
         <h4 class="modal-title" id="Login">Accedi</h4>
         <div class="modal-body">
             <form role="form" action="accesso.php" method="post">
@@ -169,7 +167,7 @@
                         <input type="checkbox"> Ricordami
                     </label>
                 </div>
-                <a data-toggle="modal" data-target="#registrazione">Non sei ancora Registrato?</a>
+                <a href="#registrazione">Non sei ancora Registrato?</a>
             </div>
             <div class="modal-footer">
                 <button type="Submit" value="Accedi" class="form-control btn btn-primary">Accedi</button>
@@ -192,7 +190,7 @@
 
     <!-- modulo registrazione -->
 <section id="registrazione" class="registrazione">
-    <div class="container">
+    <div class="container" style="width: 500px; text-align:center;">
         <h4 class="modal-title">Registrazione</h4>
         <div class="modal-body">
             <form role="form" action="registrazione.php" method="post">
