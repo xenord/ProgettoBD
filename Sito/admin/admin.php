@@ -1,32 +1,3 @@
-<!-- <!DOCTYPE html> 
-<html>
-    <head>
-        <title> Progetto Basi Di Dati </title>
-        <meta http- equiv="content-type" content="text/html" charset="UTF-8" lang="it-IT">
-    </head>
-
-    
-    <body style="background-color:skyblue;font-family:arial;">
-    
-        <h1 style="text-align:center;"> Under construction (pagina amministratore)</h1>
-        
-
-                  <h2>Benvenuto nella pagina di amministratore ecco quello che puoi fare:</h2>
- <ul>
-    <li> <a href="lista_ordini.php"><Button style="text-align:center;">Elencare tutti gli ordini effettuati</button></a> </li><br>
-    <li> <a href="crea_ordine.php"><Button style="text-align:center;">Creare un nuovo ordine</button></a> </li><br>
-    <li> <a href="crea_ordine.php"><Button style="text-align:center;">Cancellare un' ordine</button></a> </li><br>
-        <li> <a href="pizze.php"><Button style="text-align:center;">Visualizzare le pizze(potrebbe non servire)</button></a> </li><br>
-    <li> <a href="personale.php">Vedere i tuoi dati personali(potrebbe non servire)</a> </li><br>
-    <li> <a href="logout.php"><Button style="text-align:center;">Effettuare il logout</button></a></li><br>
-  </ul>
-        
-            
-    </body>
-    </head>
-</html> --> 
-
-
 <!DOCTYPE html>
 <html lang="it">
 
@@ -125,9 +96,10 @@
     <div class="row">
         <a class="gerarchia-livello-0"><h3>Gestione utenti</h3></a><br>
         <br>
-        <a class="gerarchia-livello-1" href="admin_personale.php"><Button style="text-align:center;">Vedere i tuoi dati personali(potrebbe non servire)</Button></a><br>
-        <br>
         <a class="gerarchia-livello-1" href="admin_elenco_utenti.php"><Button style="text-align:center;">Elenco utenti registrati</Button></a><br>
+        <br>
+        <a class="gerarchia-livello-1" href="admin_gestione_utenti.php"><Button style="text-align:center;">Gestione utenti registrati</Button></a><br>
+        <br>
     </div>
 </div>
 
