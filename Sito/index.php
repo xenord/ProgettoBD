@@ -139,7 +139,7 @@
     <!-- modulo login -->
 <br>
 <br>
-<h2 style="text-align:center;">Accedi per ordinare!</h2>
+<h1 style="text-align:center;">Accedi per ordinare!</h1>
 <br>
 <br>
 <br>
@@ -160,12 +160,6 @@
                         <input type="password" class="form-control" id="uPassword" placeholder="Password" name="password">
                         <label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
                     </div>
-                </div>
-
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Ricordami
-                    </label>
                 </div>
                 <a href="#registrazione">Non sei ancora Registrato?</a>
             </div>

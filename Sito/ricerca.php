@@ -39,11 +39,17 @@
     <div class="navbar-collapse collapse ">
         <ul class="nav navbar-nav">
 
-            <!-- Catalogo pizze -->
+            <!-- Linkcatalogo pizze -->
             <li><a href="pizze.php">Le Nostre Pizze</a></li>
 
-            <!-- Login -->
-            <li><a href="#" data-toggle="modal" data-target="#myModal">Login/Registrazione</a></li>
+            <!-- Link login/registrazione -->
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Login/Registrazione<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="index.php#login">Login</a></li>
+                    <li><a href="index.php#registrazione">Registrazione</a></li>
+                </ul>
+            </li>
+
             <!-- Modulo Login -->
             <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                  aria-hidden="true">
@@ -302,7 +308,9 @@
 
         <!--    </tr>
         </table> -->
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<br>
     
     </body>
 </html>
