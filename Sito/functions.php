@@ -113,6 +113,32 @@ $$ language sql;
             
             return $stat;
     }
+
+    function count_days() {
+        
+        $date=getdate();
+        if($date['mon']==4 || $date['mon']==6 || $date['mon']==9 || $date['mon']==11) {
+            $k=30;
+        }
+        
+        elseif($date['mon']==1 || $date['mon']==3 || $date['mon']==5 || $date['mon']==7 || $date['mon']==8 || $date['mon']==10 || $date['mon']==12)
+        {
+            $k=31;
+        }
+        
+        else
+        {
+            $k=28;
+        }
+        
+        return $k;
+    }
+
+    function lista_utenti($dbconn) {
+        $stat=$dbconn->prepare('select * from utenti ');    
+        $stat->execute();    
+        return $stat;
+    }
     
 
 
