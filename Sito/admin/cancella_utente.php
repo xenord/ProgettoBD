@@ -18,7 +18,7 @@ verifica_accesso();
                       $res = $stat->fetch();
 
                         
-                        header('Location:gestione_utenti.php?msg=utentecancellato');
+                        header('Location:admin_gestione_utenti.php?msg=utentecancellato');
 
                         
                     } 
