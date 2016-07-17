@@ -84,13 +84,13 @@
 <div class="container">
     <table class="table table-bordered">
         <tr>
-            <th>Username:</th>
-            <th>Nome:</th>
-            <th>Cognome:</th>
-            <th>Indirizzo:</th> 
-            <th>Numero di telefono:</th>
-            <th>Amministratore:</th>     
-            <th>Modifica utente:</th>          
+            <th>Login</th>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Indirizzo</th> 
+            <th>Numero di telefono</th>
+            <th>Amministratore</th>     
+            <th>Modifica utente</th>          
         </tr>
         <tr>
             <?php  
@@ -107,7 +107,9 @@
                             <td>$rec[numerotelefono]</td>
                             <td>$admin</td>
                             <td> 
-                            <a href='modifica_utente.php?usr=$rec[login]'><Button style='text-align:center;'>Modifica utente</button></a>
+                            <a href='modifica_utente.php?usr=$rec[login]'>
+                            <button class='form-control btn btn-primary' style='text-align:center;'>Modifica utente</button>
+                            </a>
                             <br>
                             <br></td>
                         </tr>";
@@ -119,7 +121,7 @@
 
 <hr class="featurette-divider">
 
-<section id="registrazione" class="registrazione">
+<section id="aggiungi_utente" class="aggiungi_utente">
     <div class="container" style="width: 500px; text-align:center;">
         <h4 class="modal-title">Aggiungi un nuovo utente inserendo tutti i dati</h4>
         <div class="modal-body">
@@ -199,30 +201,30 @@
 <hr class="featurette-divider">
 <br>
 <br>         
-          
-<div class="container" style="width: 500px;>          
-<form role="form" action="cancella_utente.php" method="post">
-    <div class="form-group">
-        <tr>
-            <td>
-                <label for="delelte">Seleziona un'utente da cancellare:</label>
-                <select class="form-control" name="login" id="delete">
-                    <?php                  
-                        $dbconn = db_connection(); 
-                        $res=lista_utenti($dbconn); 
-                        foreach($res as $rec) {   
-                            if($rec['login']!=$_SESSION['login']) {
-                                echo"<option value='$rec[login]'>$rec[login]</option>";
+
+<section id="aggiungi_utente" class="aggiungi_utente">         
+    <div class="container" style="width: 500px";>          
+        <form action="cancella_utente.php" method="post">
+                <tr>
+                    <td>
+                        <label for="delete">Seleziona un'utente da cancellare:</label>
+                        <select class="form-control" name="login" id="delete">
+                        <?php                  
+                            $dbconn = db_connection(); 
+                            $res=lista_utenti($dbconn); 
+                            foreach($res as $rec) {   
+                                if($rec['login']!=$_SESSION['login']) {
+                                    echo"<option value='$rec[login]'>$rec[login]</option>";
+                                }
                             }
-                        }
-                    ?> 
-                </select>      
-            </td>
-        </tr>
+                        ?> 
+                        </select>      
+                    </td>
+                </tr>
+        <button class="form-control btn btn-primary" type="submit" value="Cancella Utente">Cancella Utente</button>
+        </form>
     </div>
-    <button class="form-control btn btn-primary" type="submit" value="Cancella Utente">Cancella Utente</button>
-</form>
-</div>
+<section>
     <?php        
         if($_GET['msg']=='utentecancellato') {
             echo "<font color=darkgreen face=arial><b>Utente eliminato con successo</b></font><br>";
