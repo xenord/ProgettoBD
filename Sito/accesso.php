@@ -25,7 +25,7 @@
                         $_SESSION['login'] = $_POST['login'];
                     }
                     else {
-                        header('Location:user.php');
+                        header('Location: user/user.php');
                         session_start();                            
                         $_SESSION['login'] = $_POST['login'];
                     }                       
