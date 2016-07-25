@@ -1,16 +1,43 @@
 <!DOCTYPE html> 
 <html>
-    <head>
-        <title> Progetto Basi Di Dati </title>
-        <meta http- equiv="content-type" content="text/html" charset="UTF-8" lang="it-IT">
-    </head>
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="Progetto Basi di Dati, pizzeria online">
+    <meta name="author" content="Giacomo Ulliana, Francesco Benetello, Federico Carraro">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/personal.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/home_pages.css">
+    <!-- Titolo -->
+    <title>Conferma registrazione!</title>
+</head>
+<body>
 
-    <head>   
-    <body style="background-color:skyblue;">
+<!-- Menu di navigazione -->
+<nav class="navbar-default" id="menu">
+    <div class="col-lg-12">
+        <h1> Pizzeria Online - Progetto di Basi di Dati </h1>
+    </div>
     
-        <h1 style="text-align:center;font-family:arial;"> Under construction (registrazione effettuata con successo)</h1>
-        <br>
-        <a href="index.php"><Button style="text-align:center;font-family:arial;">Ritorna alla pagina principale</button></a>
+    <div class="navbar-header hidden-print">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.php">Ritorna alla pagina precedente</a>
+    </div>
+        <div class="navbar-collapse collapse ">
+        <ul class="nav navbar-nav">
+        <!-- NAVBAR VUOTA -->
+        </ul>
+        </div>
+    </nav>
         
         
 <?php
@@ -37,14 +64,32 @@
                     $_SESSION['login'] = $_POST['login'];
                     $stat = $dbconn->prepare('select crea_utente(?,?,?,?,?,?)');  
                     $stat->execute(array($_POST['login'],$_POST['nome'],$_POST['cognome'],$_POST['indirizzo'],$_POST['password'],$_POST['telefono']));
-                    echo "<font color=darkgreen face=arial><b>Registrazione effettuata</b></font><br>";
+                    echo "<br>
+                        <h2><p style='text-align:center;'><font color=darkgreen><b>Registrazione effettuata</b></font></p></h2>
+                        <br>";
                         /*header('Location:index.php');*/
                 }
             } catch (PDOException $e) { echo $e->getMessage(); }
         }
     }
-
-    echo "<p style=font-family:arial;><br>Le tue credenziali sono:<br>login=".$_POST['login']."<br>nome=".$_POST['nome']."<br> cognome=".$_POST['cognome']."<br> indirizzo=".$_POST['indirizzo']."<br> password=".$_POST['password']."<br> telefono=".$_POST['telefono']."</p>";
+    echo "<p style='font-family:arial;text-align: center;'>
+        <br>
+        Le tue credenziali sono:
+        <br>
+        Login = ".$_POST['login']."
+        <br>
+        Nome = ".$_POST['nome']."
+        <br>
+        Cognome = ".$_POST['cognome']."
+        <br>
+        Indirizzo = ".$_POST['indirizzo']."
+        <br> 
+        Password = ".$_POST['password']."
+        <br>
+        Telefono = ".$_POST['telefono']."
+        </p>";
+    
+    echo "<h3><p style='text-align:center;'>Utilizza il bottone in alto a sinistra per ritornare alla homepage</p></h3>";
 ?>
 
 
