@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/personal.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/home_pages.css">
     <!-- Titolo -->
     <title>Risultati ricerca</title>
 </head>
@@ -22,7 +23,7 @@
 
 <!-- Menu di navigazione -->
 <nav class="navbar-default" id="menu">
-    <div class="col-lg-12 block-center" style="text-align:center;">
+    <div class="col-lg-12">
         <h1> Pizzeria Online - Progetto di Basi di Dati </h1>
     </div>
     

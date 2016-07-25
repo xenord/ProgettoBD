@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/personal.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/home_pages.css">
     <!-- Titolo -->
     <title>Homepage</title>
 </head>
@@ -22,7 +23,7 @@
 
 <!-- Menu di navigazione -->
 <nav class="navbar-default" id="menu">
-    <div class="col-lg-12 block-center" style="text-align:center;">
+    <div class="col-lg-12">
         <h1> Pizzeria Online - Progetto di Basi di Dati </h1>
     </div>
     
@@ -139,12 +140,12 @@
     <!-- modulo login -->
 <br>
 <br>
-<h1 style="text-align:center;">Accedi per ordinare!</h1>
+<h1>Accedi per ordinare!</h1>
 <br>
 <br>
 <br>
 <section id="login" class="login"> 
-    <div class="container" style="width: 500px; text-align:center;">
+    <div class="container" id="login-div">
         <h4 class="modal-title" id="Login">Accedi</h4>
         <div class="modal-body">
             <form role="form" action="accesso.php" method="post">
@@ -184,7 +185,7 @@
 
     <!-- modulo registrazione -->
 <section id="registrazione" class="registrazione">
-    <div class="container" style="width: 500px; text-align:center;">
+    <div class="container" id="registrazione-div">
         <h4 class="modal-title">Registrazione</h4>
         <div class="modal-body">
             <form role="form" action="registrazione.php" method="post">
