@@ -82,7 +82,7 @@
     <div class="row">
         <a class="gerarchia-livello-0"><h3>Gestione ordini</h3></a><br>
         <br>
-        <a class="gerarchia-livello-1" href="admin_lista_ordini.php"><Button style="text-align:center;">Elenco ordini effettuati</button></a><br>
+        <a class="gerarchia-livello-1" href="user_lista_ordini.php"><Button style="text-align:center;">Elenco ordini effettuati</button></a><br>
         <br>
         <a class="gerarchia-livello-1" href="admin_crea_ordine.php"><Button style="text-align:center;">Fai un ordine</button></a><br>
         <br>
