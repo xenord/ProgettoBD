@@ -102,35 +102,29 @@ $$ language sql;
             return $stat;
     }
     
-        function stampa_ordini($dbconn)
-    {
-            $stat=$dbconn->prepare('select nome,cognome,indirizzo,login,numerotelefono from utenti where login=?');
-            $stat->execute(array($_SESSION['login']));
-            foreach($stat as $record) 
-            {
-                echo "<font face=arial> <br>username: $record[login] <br> nome: $record[nome]<br> cognome: $record[cognome]<br> indirizzo: $record[indirizzo] <br> numero di telefono: $record[numerotelefono]</font><br>";     
-            }
-            
-            return $stat;
+    function stampa_ordini($dbconn) {
+        $stat=$dbconn->prepare('select * from ordini');
+        $stat->execute();        
+        return $stat;
     }
 
-    function count_days() {
-        
+    function stampa_ordini_per_utente($dbconn) {
+        $stat=$dbconn->prepare('select * from ordini where utente = ?');
+        $stat->execute(array($_SESSION['login']));
+        return $stat;
+    }
+
+    function count_days() {    
         $date=getdate();
         if($date['mon']==4 || $date['mon']==6 || $date['mon']==9 || $date['mon']==11) {
             $k=30;
         }
-        
-        elseif($date['mon']==1 || $date['mon']==3 || $date['mon']==5 || $date['mon']==7 || $date['mon']==8 || $date['mon']==10 || $date['mon']==12)
-        {
+        elseif($date['mon']==1 || $date['mon']==3 || $date['mon']==5 || $date['mon']==7 || $date['mon']==8 || $date['mon']==10 || $date['mon']==12) {
             $k=31;
         }
-        
-        else
-        {
+        else {
             $k=28;
         }
-        
         return $k;
     }
 
@@ -139,8 +133,6 @@ $$ language sql;
         $stat->execute();    
         return $stat;
     }
-    
-
 
     
 
