@@ -84,7 +84,7 @@
         <br>
         <a class="gerarchia-livello-1" href="user_lista_ordini.php"><Button style="text-align:center;">Elenco ordini effettuati</button></a><br>
         <br>
-        <a class="gerarchia-livello-1" href="admin_crea_ordine.php"><Button style="text-align:center;">Fai un ordine</button></a><br>
+        <a class="gerarchia-livello-1" href="user_crea_ordine.php"><Button style="text-align:center;">Fai un ordine</button></a><br>
         <br>
         <a class="gerarchia-livello-1" href="#"><Button style="text-align:center;">Cancella un'ordine</button></a><br>
 

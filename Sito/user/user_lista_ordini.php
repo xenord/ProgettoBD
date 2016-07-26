@@ -92,7 +92,7 @@
         <tr>
             <?php  
                 $dbconn = db_connection();     
-                $res=lista_utenti($dbconn);      
+                $res=stampa_ordini_per_utente($dbconn);      
                 foreach($res as $rec) {
                     echo"<tr>
                             <td>$rec[IDordine]</td>
