@@ -50,6 +50,7 @@
         </form>
         
         <?php
+            try {
                 if(isset($_POST['modifica']))
                 {   
                    if((!preg_match("/^[0-9]*$/",$_POST['telefono'])))
@@ -57,14 +58,20 @@
                         header('Location:modifica_utente.php?errore=erroretelefono');
                     }
                     
-                    else
-                    {
-                    $stat = $dbconn->prepare('select modifica_utente(?,?,?,?,?,?)');  
-                    $stat->execute(array($_POST['login'],$_POST['nome'],$_POST['cognome'],$_POST['indirizzo'],$_POST['password'],$_POST['telefono']));
-                    header('Location:admin_gestione_utenti.php?msg=utentemodificato');
+                    else {
+                        if ($_POST['admin'] == 1) {
+                            $isAdmin = t;
+                        }
+                        else {
+                            $isAdmin = f;
+                        }
+                        $stat = $dbconn->prepare('select modifica_utente(?,?,?,?,?,?)');  
+                        $stat->execute(array($_POST['login'],$_POST['nome'],$_POST['cognome'],$_POST['indirizzo'],$isAdmin,$_POST['telefono']));
+                        header('Location:admin_gestione_utenti.php?msg=utentemodificato');
                     }
                     
                 }
+            } catch(PDOException $e) { echo $e->getMessage(); }
         
         ?>
            
