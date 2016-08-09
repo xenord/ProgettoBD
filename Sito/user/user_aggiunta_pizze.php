@@ -4,7 +4,6 @@
   verifica_accesso();
 
   ?>
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
