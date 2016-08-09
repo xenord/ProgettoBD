@@ -11,23 +11,27 @@
             <?php  
                 require "../functions.php"; 
                 verifica_accesso();
+                $login = $_SESSION['login'];
             ?>
 
         <a href='user.php'><Button style='text-align:center;'>Ritorna nella tua area riservata</button></a><br><br>
-        
+        <?php
+            echo "Tu sei: $login";
+        ?>
         <p>Per ordinare delle pizze, compila il form qua sotto: (ogni campo è obbligatorio) </p>
-        <form action="user.php" method="post">
+        <form action="user_aggiunta_pizze.php" method="post">
         <table style="text-align:center;">
             <tr><td>giorno di consegna:</td><td>
             <?php             
                 $date=getdate();
                 $days=count_days();
 
-                echo"<select name='days'>";
+                echo"<select name='day'>";
                 for($count=$date['mday'];$count<=$days;$count++) {
                     echo"<option value='$count'>$count </option>";
-                }    
+                }
                 echo"</select>";
+
 
                 echo"<select name='months'>";
                 for($count=$date['mon'];$count<=12;$count++) {
@@ -35,10 +39,17 @@
                 }
                 echo"</select>"; 
 
-                echo"<select name='year'>";        
-                echo"<option value='$date[year]'>$date[year] </option>";        
-                echo"</select>";
-                        
+                echo"<select name='year'>        
+                    <option value='$date[year]'>$date[year] </option>        
+                </select>";
+                $dbconn = db_connection();
+
+                $year = $_POST['year'];
+                $month = $_POST['months'];
+                $day = $_POST['day'];
+                $dateformat = $_POST['year'].$_POST['$month'].$_POST['$day'];
+                echo "$dateformat";
+
   ?>
     
 	        <tr><td>ora di consegna:</td><td>  <?php 
@@ -61,19 +72,18 @@
                         echo"</select>";                        
                         
   ?></td></tr>
-	        <tr><td>indirizzo consegna:</td><td><input type="text" name="telefono"></td></tr>
-	        seleziona le pizze
+	        <tr><td>indirizzo consegna:</td><td><input type="text" name="indirizzoconsegna"></td></tr>
         </table>
         <br>
 <?php
             try {
         $dbconn = db_connection();
         $statement = $dbconn->prepare('select crea_ordine(?,?,?,?)');
-        $statement->execute(array($_SESSION['utente'],$_POST['giornoconsegna'],$_POST['oraconsegna'],$_POST['indirizzoconsegna']));
+        $statement->execute(array($login,$dateformat,$_POST['oraconsegna'],$_POST['indirizzoconsegna']));
         } catch (PDOException $e) { echo $e->getMessage(); }
  ?>
         <br>
-        <input href="user_aggiunta_pizze.php" type="submit" value="Continua con l'aggiunta delle pizze">
+        <input type="submit" value="Continua con l'aggiunta delle pizze">
         </form>  
                      
                
