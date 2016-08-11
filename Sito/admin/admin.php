@@ -103,6 +103,18 @@
     </div>
 </div>
 
+<hr class="featurette-divider">
+
+<div class="container">
+    <div class="row">
+        <a class="gerarchia-livello-0"><h3>Gestione Magazzzino</h3></a><br>
+        <br>
+        <a class="gerarchia-livello-1" href="admin_ingredienti_disponibili.php"><Button style="text-align:center;">Disponibilità ingredienti</Button></a><br>
+        <br>
+        <a class="gerarchia-livello-1" href="admin_ricarica_magazzino.php"><Button style="text-align:center;">Ricarica magazzino</Button></a><br>
+        <br>
+    </div>
+</div>
 
     
 
