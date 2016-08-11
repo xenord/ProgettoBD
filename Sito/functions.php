@@ -109,7 +109,7 @@ $$ language sql;
     }
 
     function stampa_ordini_per_utente($dbconn) {
-        $stat=$dbconn->prepare('select * from ordini where utente = ?');
+        $stat=$dbconn->prepare('select * from ordini where login = ?');
         $stat->execute(array($_SESSION['login']));
         return $stat;
     }
@@ -132,6 +132,23 @@ $$ language sql;
         $stat=$dbconn->prepare('select * from utenti ');    
         $stat->execute();    
         return $stat;
+    }
+
+    function ingredientti_disponibili($dbconn) {
+        $stat=$dbconn->prepare('select idingrediente, nomeingrediente, quantita from magazzino');
+        $stat->execute();
+        return $stat;
+    }
+
+    function ingredientti_disponibili_per_pizza($dbconn,$idp) {
+        $stat=$dbconn->prepare('select di.idingrediente, m.quantita from pizze p, disponibilitaingredienti di, magazzino m where di.idingrediente = m.idingrediente and p.idpizza = di.idpizza and p.idpizza = ?');
+        $stat->execute(array($idp));
+        return $stat;
+    }
+
+    function aggiorna_magazzino($dbconn,$quant,$idi) {
+        $stat=$dbconn->prepare('update magazzino set quantita = ? where idingrediente = ?');
+        $stat->execute(array($quant,$idi));
     }
 
     
