@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../css/personal.css">
     <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
     <!-- Titolo -->
-    <title>Console Amministrazione</title>
+    <title>Elenco utenti</title>
 </head>
 
 <body>
@@ -76,7 +76,6 @@
 <br>
 <br>
 <div class="container">
-    <h2> Elenco di tutti gli utenti registrati</h2>
     <table class="table table-bordered">
         <thead>
             <tr>

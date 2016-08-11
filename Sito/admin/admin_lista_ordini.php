@@ -95,8 +95,8 @@
                 $res=stampa_ordini($dbconn);      
                 foreach($res as $rec) {
                     echo"<tr>
-                            <td>$rec[IDordine]</td>
-                                <td>$rec[utente]</td>
+                            <td>$rec[idordine]</td>
+                                <td>$rec[login]</td>
                                 <td>$rec[giornoconsegna]</td>
                                 <td>$rec[oraconsegna]</td>
                                 <td>$rec[indirizzoconsegna]</td>
