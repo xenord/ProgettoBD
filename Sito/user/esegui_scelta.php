@@ -11,11 +11,17 @@ require "../functions.php";
 </head>
 <body>
 <h1>Scelta pizza</h1>
+<h3>E' possibile scegliere solo un tipo di pizza per volta</h3>
+
  <?php
   try {
-	$dbconn = connessione();
-	$st = $dbconn->prepare('select nuova_pizzeordinata(?,?,?)');
-	$st->execute(array($_POST['numeropizze'],$_SESSION['codordine'],$_POST['pizza']));
+	$dbconn = db_connection();
+  $state = $dbconn->prepare('select IDordine from ordini where login = ?');
+  $state->execute(array($_SESSION['login']));
+	$statement = $dbconn->prepare('select inserisci_pizza_in_ordine(?,?,?)');
+  foreach ($state as $key) {
+      $statement->execute(array($_POST['idpizza'],$key['idordine'],$_POST['numeropizze'])); 
+  }
   } catch (PDOException $e) { echo $e->getMessage(); }
   ?>
   <p>La pizza che hai scelto &egrave; stata aggiunta al tuo ordine!</p>
