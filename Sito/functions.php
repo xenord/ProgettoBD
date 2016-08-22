@@ -102,11 +102,10 @@ $$ language sql;
     }
     
     function stampa_ordini($dbconn) {
-        $stat=$dbconn->prepare('select o.idordine, o.login, o.giornoconsegna, o.oraconsegna, o.indirizzoconsegna, p.nome, pc.numeropizze from ordini o, pizzecontenute pc, pizze p where pc.idordine = o.idordine and p.idpizza = pc.idpizza');
+        $stat=$dbconn->prepare('select o.idordine, o.login, o.giornoconsegna, o.oraconsegna, o.indirizzoconsegna from ordini o');
         $stat->execute();        
         return $stat;
     }
-
 
     function stampa_ordini_per_utente($dbconn) {
         $stat=$dbconn->prepare('select o.idordine, o.login, o.giornoconsegna, o.oraconsegna, o.indirizzoconsegna, p.nome, pc.numeropizze from ordini o, pizzecontenute pc, pizze p where pc.idordine = o.idordine and p.idpizza = pc.idpizza and login = ?');

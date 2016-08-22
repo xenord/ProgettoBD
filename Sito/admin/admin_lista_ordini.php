@@ -88,26 +88,25 @@
             <th>Giorno di consegna</th>
             <th>Ora di consegna</th> 
             <th>Indirizzo di consegna</th>
-            <th>Nome pizza</th>
-            <th>Quantità</th>            
+            <th>Visualizza pizze ordinate</th>
         </tr>
-        <tr>
-            <?php 
-                $dbconn = db_connection();     
-                $res=stampa_ordini($dbconn);      
-                foreach($res as $rec) {
-                    echo"<tr>
-                            <td>$rec[idordine]</td>
-                                <td>$rec[login]</td>
-                                <td>$rec[giornoconsegna]</td>
-                                <td>$rec[oraconsegna]</td>
-                                <td>$rec[indirizzoconsegna]</td>
-                                <td>$rec[nome]</td>
-                                <td>$rec[numeropizze]</td>
-                        </tr>";            
-                }
-            ?>                             
-        </tr>
+
+        <?php 
+            $dbconn = db_connection();     
+            $res=stampa_ordini($dbconn);
+            foreach($res as $rec) {
+                echo"<tr>
+                    <td>$rec[idordine]</td>
+                    <td>$rec[login]</td>
+                    <td>$rec[giornoconsegna]</td>
+                    <td>$rec[oraconsegna]</td>
+                    <td>$rec[indirizzoconsegna]</td>
+                    <td><a href='admin_visualizza_pizza_utente.php?usr=$rec[login]'>
+                        <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Visualizza pizze ordinate</button>
+                    </td>
+                </tr>";
+            }
+        ?>                     
     </table>
     </div>
 
