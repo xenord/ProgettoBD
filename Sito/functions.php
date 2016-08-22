@@ -102,7 +102,7 @@ $$ language sql;
     }
     
     function stampa_ordini($dbconn) {
-        $stat=$dbconn->prepare('select o.idordine, o.login, o.giornoconsegna, o.oraconsegna, o.indirizzoconsegna from ordini o');
+        $stat=$dbconn->prepare('select * from ordini');
         $stat->execute();        
         return $stat;
     }
@@ -149,6 +149,12 @@ $$ language sql;
     function aggiorna_magazzino($dbconn,$quant,$idi) {
         $stat=$dbconn->prepare('update magazzino set quantita = ? where idingrediente = ?');
         $stat->execute(array($quant,$idi));
+    }
+
+    function pizze_per_ordine($dbconn,$usr) {
+        $stat=$dbconn->prepare('select p.nome, pc.numeropizze from ordini o, pizzecontenute pc, pizze p where pc.idordine = o.idordine and p.idpizza = pc.idpizza and o.login = ?');
+        $stat->execute(array($usr));
+        return $stat;
     }
 
     
