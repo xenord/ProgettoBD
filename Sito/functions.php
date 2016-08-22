@@ -135,7 +135,7 @@ $$ language sql;
     }
 
     /*NOTA BENE: E' stato aggiunto un order by perchè nelle ordinazioni quando vengono scalati gli ingredienti dal magazzino, la tabella non è più ordinata */
-    function ingredientti_disponibili($dbconn) {
+    function ingredienti_disponibili($dbconn) {
         $stat=$dbconn->prepare('select idingrediente, nomeingrediente, quantita from magazzino order by idingrediente asc');
         $stat->execute();
         return $stat;
