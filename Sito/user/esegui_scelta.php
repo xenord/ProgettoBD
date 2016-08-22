@@ -19,7 +19,7 @@ require "../functions.php";
         $state = $dbconn->prepare('select IDordine from ordini where login = ?');
         $state->execute(array($_SESSION['login']));
 	    $statement = $dbconn->prepare('select inserisci_pizza_in_ordine(?,?,?)');
-        $quantita = ingredientti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
+        $quantita = ingredienti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
         $flagpizze = 0;
         $flag = 0;
         for($counter = 0; $counter < $_POST['numeropizze']; $counter++) { 
@@ -35,7 +35,7 @@ require "../functions.php";
                     echo "<p>Non ci sono abbastanza ingredienti per fare questa pizza</p>";
                     break;
                 }
-                $quantita = ingredientti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
+                $quantita = ingredienti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
             }
         }
         if ($flag == 1) {
