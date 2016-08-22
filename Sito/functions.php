@@ -141,7 +141,7 @@ $$ language sql;
         return $stat;
     }
 
-    function ingredientti_disponibili_per_pizza($dbconn,$idp) {
+    function ingredienti_disponibili_per_pizza($dbconn,$idp) {
         $stat=$dbconn->prepare('select di.idingrediente, m.quantita from pizze p, disponibilitaingredienti di, magazzino m where di.idingrediente = m.idingrediente and p.idpizza = di.idpizza and p.idpizza = ?');
         $stat->execute(array($idp));
         return $stat;
