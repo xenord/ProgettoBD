@@ -27,7 +27,12 @@ require "../functions.php";
                 $idingredienteperpizza = $quantitaingredienti[0];
                 $quantitaingredienteperpizza = $quantitaingredienti[1];
                 if ($quantitaingredienteperpizza > 0) {
+                    // flag = 1 perchè se gli ingredienti permettono di fare almeno una di quel tipo di pizza
+                    // allora viene inserita nel database
+                    // se il flag non dovesse andare MAI a 1 allora vuol dire che non ci sono ingrediente nemmeno per fare una pizza
+                    // di quel tipo
                     $flag = 1;
+                    // flagpizze conta le pizze che gli ingredienti permettono di fare
                     $flagpizze++;
                     aggiorna_magazzino($dbconn,$quantitaingredienteperpizza-1,$idingredienteperpizza);
                 }
