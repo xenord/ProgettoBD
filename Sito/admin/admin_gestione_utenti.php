@@ -81,43 +81,45 @@
 <!-- In Evidenza -->
         <br>
         <br>
-<div class="container">
-    <table class="table table-bordered">
-        <tr>
-            <th>Login</th>
-            <th>Nome</th>
-            <th>Cognome</th>
-            <th>Indirizzo</th> 
-            <th>Numero di telefono</th>
-            <th>Amministratore</th>     
-            <th>Modifica utente</th>          
-        </tr>
-        <tr>
-            <?php  
-                    
-                $dbconn = db_connection();
-                $res=lista_utenti($dbconn);          
-                foreach($res as $rec) {
-                    $admin= $rec['admin']==1 ? "Si":"No";
-                    echo"<tr>
-                            <td>$rec[login]</td>
-                            <td>$rec[nome]</td>
-                            <td>$rec[cognome]</td>
-                            <td>$rec[indirizzo]</td>
-                            <td>$rec[numerotelefono]</td>
-                            <td>$admin</td>
-                            <td> 
-                            <a href='modifica_utente.php?usr=$rec[login]'>
-                            <button class='form-control btn btn-primary' style='text-align:center;'>Modifica utente</button>
-                            </a>
-                            <br>
-                            <br></td>
-                        </tr>";
-                }                                  
-            ?>                                                            
-        </tr>
-    </table> 
-</div>
+<section id="lista_utenti" class="lista_utenti">
+    <div class="container">
+        <table class="table table-bordered">
+            <tr>
+                <th>Login</th>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Indirizzo</th> 
+                <th>Numero di telefono</th>
+                <th>Amministratore</th>     
+                <th>Modifica utente</th>          
+            </tr>
+            <tr>
+                <?php  
+                        
+                    $dbconn = db_connection();
+                    $res=lista_utenti($dbconn);          
+                    foreach($res as $rec) {
+                        $admin= $rec['admin']==1 ? "Si":"No";
+                        echo"<tr>
+                                <td>$rec[login]</td>
+                                <td>$rec[nome]</td>
+                                <td>$rec[cognome]</td>
+                                <td>$rec[indirizzo]</td>
+                                <td>$rec[numerotelefono]</td>
+                                <td>$admin</td>
+                                <td> 
+                                <a href='modifica_utente.php?usr=$rec[login]'>
+                                <button class='form-control btn btn-primary' style='text-align:center;'>Modifica utente</button>
+                                </a>
+                                <br>
+                                <br></td>
+                            </tr>";
+                    }                                  
+                ?>                                                            
+            </tr>
+        </table> 
+    </div>
+</section>
 
 <hr class="featurette-divider">
 
@@ -202,7 +204,7 @@
 <br>
 <br>         
 
-<section id="aggiungi_utente" class="aggiungi_utente">         
+<section id="cancella_utente" class="cancella_utente">         
     <div class="container" style="width: 500px";>          
         <form action="cancella_utente.php" method="post">
                 <tr>

@@ -13,6 +13,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/personal.css">
+    <link rel="stylesheet" href="../css/admin_pages.css">
     <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
     <!-- Titolo -->
     <title>Ricarica magazzino</title>
@@ -78,12 +79,13 @@
 <!-- In Evidenza -->
         <br>
         <br>
-<div class="container">
+<section id="disponibilita_ingredienti" class="disponibilita_ingredienti"> 
+    <div class="container">
     <?php
         try {
             $dbconn = db_connection();
             echo $_GET['pizzasearch'];
-            $ris=ingredientti_disponibili($dbconn);
+            $ris=ingredienti_disponibili($dbconn);
             echo "<table class='table table-bordered'>
                     <thead>
                         <tr>
@@ -104,7 +106,8 @@
         } catch (PDOException $e) { echo $e->getMessage(); }
     ?>
     </table>
-</div>
+    </div>
+</section>
 
 <br>
 <br>
@@ -115,32 +118,40 @@
 <section id="ricarica_ingrediente" class="ricarica_ingrediente">  
     <div class="container" style="width: 500px";>          
         <form action="admin_ricarica_magazzino_fun.php" method="post">
-                <tr>
-                    <td>
-                        <label for="delete">Seleziona un'ingrediente da ricaricare:</label>
-                        <select class="form-control" name="nomeingrediente" id="delete">
+            <tr>
+                <td>
+                    <label for="delete">Seleziona un'ingrediente da ricaricare:</label>
+                    <select class="form-control" name="nomeingrediente" id="delete">
                         <?php                  
                             $dbconn = db_connection(); 
-                            $res=ingredientti_disponibili($dbconn); 
+                            $res=ingredienti_disponibili($dbconn); 
                             foreach($res as $rec) {   
                                 echo"<option value='$rec[nomeingrediente]'>$rec[nomeingrediente]</option>";
                             }
                         ?>
-                        </select>      
-                    </td>
-                </tr>
-                <label>Quantità da aggiungere</label>
-                <br>
-                <input type="int" name="quantita">  
-        <button class="form-control btn btn-primary" type="submit" value="Ricarica Ingrediente">Ricarica Ingrediente</button>
+                    </select>      
+                </td>
+            </tr>
+            <br>
+            </br>
+            <tr>
+                <td>
+                    <label>Quantità da aggiungere</label>
+                    <br>
+                    <input type="int" name="quantita" value="0">  
+                    <br>
+                    </br>
+                    <button class="form-control btn btn-primary" type="submit" value="Ricarica Ingrediente">Ricarica Ingrediente</button>
+                </td>
+            </tr>
         </form>
     </div>
 <section>
-    <?php        
-        if($_GET['msg']=='ricaricaavvenuta') {
-            echo "<font color=darkgreen face=arial><b>Ricarica avvenuta con successo</b></font><br>";
-        }     
-    ?>  
+<?php        
+    if($_GET['msg']=='ricaricaavvenuta') {
+        echo "<div class='ricaricaavvenuta'> <font color=darkgreen face=arial><b>Ricarica avvenuta con successo</b></font></div><br>";
+    }     
+?>  
 <br>
 <br>
 <!-- Footer -->

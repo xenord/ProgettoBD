@@ -96,9 +96,13 @@
     <div class="row">
         <a class="gerarchia-livello-0"><h3>Gestione utenti</h3></a><br>
         <br>
-        <a class="gerarchia-livello-1" href="admin_elenco_utenti.php"><Button style="text-align:center;">Elenco utenti registrati</Button></a><br>
+        <a class="gerarchia-livello-1" href="admin_gestione_utenti.php#lista_utenti"><Button style="text-align:center;">Elenco utenti registrati</Button></a><br>
         <br>
         <a class="gerarchia-livello-1" href="admin_gestione_utenti.php"><Button style="text-align:center;">Gestione utenti registrati</Button></a><br>
+        <br>
+        <a class="gerarchia-livello-2" href="admin_gestione_utenti.php#aggiungi_utente"><Button style="text-align:center;">Aggiungi un nuovo utente</Button></a><br>
+        <br>
+        <a class="gerarchia-livello-2" href="admin_gestione_utenti.php#cancella_utente"><Button style="text-align:center;">Cancella un utente</Button></a><br>
         <br>
     </div>
 </div>
@@ -109,9 +113,9 @@
     <div class="row">
         <a class="gerarchia-livello-0"><h3>Gestione Magazzzino</h3></a><br>
         <br>
-        <a class="gerarchia-livello-1" href="admin_ingredienti_disponibili.php"><Button style="text-align:center;">Disponibilità ingredienti</Button></a><br>
+        <a class="gerarchia-livello-1" href="admin_ricarica_magazzino.php#disponibilita_ingredienti"><Button style="text-align:center;">Disponibilità ingredienti</Button></a><br>
         <br>
-        <a class="gerarchia-livello-1" href="admin_ricarica_magazzino.php"><Button style="text-align:center;">Ricarica magazzino</Button></a><br>
+        <a class="gerarchia-livello-1" href="admin_ricarica_magazzino.php#ricarica_ingrediente"><Button style="text-align:center;">Ricarica magazzino</Button></a><br>
         <br>
     </div>
 </div>
