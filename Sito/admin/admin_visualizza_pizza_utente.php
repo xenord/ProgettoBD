@@ -20,12 +20,15 @@
         <?php
             require "../functions.php";
             verifica_accesso();
-            echo "Hai selezionato l'ordine dell'utente: ".$_GET['usr'];
+            echo "<br></br>";
+            echo "<p>Hai selezionato l'ordine dell'utente: ".$_GET['usr']."</p>";
         ?>
 
-
+        <a href='admin_lista_ordini.php'>
+        <button class='form-control btn btn-primary' style='text-align:left; width:500px;'>Ritorna alla pagina precedente</button>
 
         <div class="container">
+            <br></br>
             <table class="table table-bordered">
                 <tr>
                     <th>Nome pizza</th>
@@ -34,17 +37,14 @@
 
                 <?php
                     try {
-                        if(isset($_POST['vedi_pizze'])) {  
-                            $dbconn = db_connection();     
-                            $stat = $dbconn->prepare('select p.nome, pc.numeropizze from ordini o, pizzecontenute pc, pizze p where pc.idordine = o.idordine and p.idpizza = pc.idpizza and o.login = ?');
-                            $stat->execute(array($_GET['usr']));
-                            $res = $stat->fetch();
-                            foreach($res as $rec) {
-                                echo "<tr>
-                                    <td>$rec[nome]</td>
-                                    <td>$rec[numeropizze]</td>
-                                </tr>";
-                            }
+                        $dbconn = db_connection();
+                        /* ppo = Pizze Per Ordine ;-) */
+                        $ppo = pizze_per_ordine($dbconn,$_GET['usr']);
+                        foreach($ppo as $rec) {
+                            echo "<tr>
+                                <td>$rec[0]</td>
+                                <td>$rec[1]</td>
+                            </tr>";
                         }
                     } catch (PDOException $e) { echo $e->getMessage(); }
                 ?> 

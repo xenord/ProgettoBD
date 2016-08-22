@@ -89,6 +89,7 @@
             <th>Ora di consegna</th> 
             <th>Indirizzo di consegna</th>
             <th>Visualizza pizze ordinate</th>
+            <th>Cancella ordine</th>
         </tr>
 
         <?php 
@@ -104,14 +105,45 @@
                     <td><a href='admin_visualizza_pizza_utente.php?usr=$rec[login]'>
                         <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Visualizza pizze ordinate</button>
                     </td>
+                    <td><a href='admin_cancella_ordini.php?usr=$rec[login]'>
+                        <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Visualizza pizze ordinate</button>
+                    </td>
                 </tr>";
             }
         ?>                     
     </table>
-    </div>
+</div>
 
 <br>
 <br>
+<br>
+<hr class="featurette-divider">
+<br>
+<br>
+
+<section id="cancella_ordine" class="cancella_ordine">         
+    <div class="container" style="width: 500px";>          
+        <form action="admin_cancella_ordini.php" method="post">
+                <tr>
+                    <td>
+                        <label for="delete">Selezionare ID ordine da cancellare:</label>
+                        <select class="form-control" name="idordine" id="delete">
+                        <?php                  
+                            $dbconn = db_connection(); 
+                            $res=stampa_ordini($dbconn); 
+                            foreach($res as $rec) {   
+                                echo"<option value='$rec[idordine]'>$rec[idordine]</option>";
+                            }
+                        ?> 
+                        </select>      
+                    </td>
+                </tr>
+        <button class="form-control btn btn-primary" type="submit" value="Cancella ordine">Cancella ordine</button>
+        </form>
+    </div>
+<section>
+
+
 <!-- Footer -->
 <div class="container">
     <footer>
