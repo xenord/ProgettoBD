@@ -86,7 +86,7 @@
         <br>
         <a class="gerarchia-livello-1" href="admin_lista_ordini.php"><Button style="text-align:center;">Elencare tutti gli ordini effettuati</button></a><br>
         <br>
-        <a class="gerarchia-livello-1" href="admin_cancella_ordini.php"><Button style="text-align:center;">Cancella un nuovo ordine</button></a><br>
+        <a class="gerarchia-livello-2" href="admin_lista_ordini.php#cancella_ordine"><Button style="text-align:center;">Cancella un ordine</button></a><br>
     </div>
 </div>
 
