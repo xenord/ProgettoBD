@@ -87,7 +87,9 @@
             <th>Username</th>
             <th>Giorno di consegna</th>
             <th>Ora di consegna</th> 
-            <th>Indirizzo di consegna</th>            
+            <th>Indirizzo di consegna</th> 
+            <th>Nome pizza</th>
+            <th>Quantità</th>           
         </tr>
         <tr>
             <?php  
@@ -100,6 +102,8 @@
                                 <td>$rec[giornoconsegna]</td>
                                 <td>$rec[oraconsegna]</td>
                                 <td>$rec[indirizzoconsegna]</td>
+                                <td>$rec[nome]</td>
+                                <td>$rec[numeropizze]</td>
                         </tr>";            
                 }
             ?>                             
