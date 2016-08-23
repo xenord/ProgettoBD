@@ -21,9 +21,9 @@
                 $quantita = ingredienti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
                 $flagpizze = 0;
                 $flag = 0;
-                $flagingredienti=1;/*flagbreak lo uso per evitare il break*/
+                $flagbreak=1;/*flagbreak lo uso per evitare il break*/
                 for($counter = 0; $counter < $_POST['numeropizze']; $counter++) { 
-                    if($flagingredienti)
+                    if($flagbreak)
                     {
                         foreach ($quantita as $quantitaingredienti) {
                             $idingredienteperpizza = $quantitaingredienti[0];
@@ -40,7 +40,7 @@
                             }
                             else {
                                 echo "<p>Non ci sono abbastanza ingredienti per fare questa pizza</p>";
-                                $flagingredienti=0;
+                                $flagbreak=0;
                             }
                             $quantita = ingredienti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
                         }
