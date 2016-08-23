@@ -37,12 +37,12 @@
                             aggiorna_magazzino($dbconn,$quantitaingredienteperpizza-1,$idingredienteperpizza);
                         }
                         else {
-                            echo "<p>Non ci sono abbastanza ingredienti per fare questa pizza</p>";
+                            
                             $flagbreak=0;
                             break;
                         }
                         $quantita = ingredienti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
-                        echo "non ci sono abbastanza".$idingredienteperpizza;
+                        
                     }
                 }
                 
