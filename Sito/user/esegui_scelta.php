@@ -52,7 +52,7 @@
                 }
                 
                 
-                if ($flag == 1 && $flagbreak == 1 ) {
+                else if ($flag == 1 && $flagbreak == 1 ) {
                     foreach ($state as $key) {
                         $statement->execute(array($_POST['idpizza'],$key['idordine'],$flagpizze));
                     }
