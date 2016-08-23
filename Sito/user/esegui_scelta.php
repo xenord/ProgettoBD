@@ -40,6 +40,7 @@
                             break;
                         }
                         $quantita = ingredienti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
+                        echo $quantita;
                     }
                 }
                 if ($flag == 1) {
