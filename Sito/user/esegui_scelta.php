@@ -40,7 +40,7 @@
                             break;
                         }
                         $quantita = ingredienti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
-                        echo $quantita;
+                        echo "non ci sono abbastanza".$idingredienteperpizza;
                     }
                 }
                 if ($flag == 1) {
