@@ -48,7 +48,7 @@
                 
                 if($flagbreak == 0)
                 {
-                    echo "non ci sono abbastanza ingredienti per fare ".$_GET['nomepizza'];
+                    echo "non ci sono abbastanza ingredienti per fare ".$_POST['idpizza'];
                 }
                 
                 
@@ -56,7 +56,7 @@
                     foreach ($state as $key) {
                         $statement->execute(array($_POST['idpizza'],$key['idordine'],$flagpizze));
                     }
-                    echo "<p>hai aggiunto".$flagpizze." pizza/e al tuo ordine!</p>";
+                    echo "<p>hai aggiunto ".$flagpizze." pizza/e al tuo ordine!</p>";
                 }
             } catch (PDOException $e) { echo $e->getMessage(); }
         ?>
