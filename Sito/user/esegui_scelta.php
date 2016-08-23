@@ -48,7 +48,7 @@
                 
                 if($flagbreak == 0)
                 {
-                    echo "non ci sono abbastanza".$idingredienteperpizza;
+                    echo "non ci sono abbastanza ingredienti per fare ".$_GET['nomepizza'];
                 }
                 
                 
