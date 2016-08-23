@@ -45,7 +45,7 @@
                     }
                 }
                 
-                if($flagbreak == 1)
+                if($flagbreak == 0)
                 {
                     echo "non ci sono abbastanza".$idingredienteperpizza;
                 }
