@@ -22,7 +22,7 @@
                 $flagpizze = 0;
                 $flag = 0;
                 $flagbreak=1;
-                $numingredienti=numero_ingredienti_per_pizza($dbconn,$_POST['idpizza'])
+                $numingredienti=numero_ingredienti_per_pizza($dbconn,$_POST['idpizza']);
                 for($counter = 0; $counter < $_POST['numeropizze']; $counter++) { 
                     foreach ($quantita as $quantitaingredienti) {
                         $idingredienteperpizza = $quantitaingredienti[0];
