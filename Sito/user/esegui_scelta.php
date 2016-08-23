@@ -45,13 +45,15 @@
                             $quantita = ingredienti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
                         }
                     }
-                    if ($flag == 1) {
+                    if ($flag == 1 && $flagbreak) {
                     foreach ($state as $key) {
                         $statement->execute(array($_POST['idpizza'],$key['idordine'],$flagpizze));
+                        echo "<p>Hai aggiunto ".$flagpizze." pizza/e al tuo ordine!</p>";
                     }
-                    echo "<p>Hai aggiunto".$flagpizze."pizza/e al tuo ordine!</p>";
+                    
                 }
-              }    
+              }
+              
             } catch (PDOException $e) { echo $e->getMessage(); }
         ?>
         <br> </br>
