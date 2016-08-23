@@ -25,6 +25,7 @@
                 $countidingrediente=0;
                 for($counter = 0; $counter < $_POST['numeropizze']; $counter++) { 
                     foreach ($quantita as $quantitaingredienti) {
+                        $newingrediente=$idingredienteperpizza;
                         $idingredienteperpizza = $quantitaingredienti[0];
                         $quantitaingredienteperpizza = $quantitaingredienti[1];
                         if ($quantitaingredienteperpizza > 0) {
@@ -35,7 +36,9 @@
                             $flag = 1;
                             // flagpizze conta le pizze che gli ingredienti permettono di fare
                             $flagpizze++;
-                            $countidingrediente++;
+                            if($newingrediente!= $idingredienteperpizza)
+                                $countidingrediente++;
+                            
                             aggiorna_magazzino($dbconn,$quantitaingredienteperpizza-1,$idingredienteperpizza);
                         }
                         else {
