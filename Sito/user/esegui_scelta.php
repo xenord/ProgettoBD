@@ -56,7 +56,7 @@
                 
                 
                 else if ($flag == 1 && $flagbreak == 1 ) {
-                    foreach ($state as $key) {
+                    foreach ($statement as $key) {
                         $statement->execute(array($_POST['idpizza'],$key['idordine'],($flagpizze/$numingredienti)));
                     }
                     echo "<p>hai aggiunto ".($flagpizze/$numingredienti)." pizza/e al tuo ordine!</p>";
