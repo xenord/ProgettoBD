@@ -87,9 +87,9 @@
             <th>Username</th>
             <th>Giorno di consegna</th>
             <th>Ora di consegna</th> 
-            <th>Indirizzo di consegna</th> 
-            <th>Nome pizza</th>
-            <th>Quantità</th>           
+            <th>Indirizzo di consegna</th>
+            <th>Visualizza pizze ordinate</th>
+            <th>Cancella ordine</th>           
         </tr>
         <tr>
             <?php  
@@ -97,14 +97,18 @@
                 $res=stampa_ordini_per_utente($dbconn);      
                 foreach($res as $rec) {
                     echo"<tr>
-                            <td>$rec[idordine]</td>
-                                <td>$rec[login]</td>
-                                <td>$rec[giornoconsegna]</td>
-                                <td>$rec[oraconsegna]</td>
-                                <td>$rec[indirizzoconsegna]</td>
-                                <td>$rec[nome]</td>
-                                <td>$rec[numeropizze]</td>
-                        </tr>";            
+                        <td>$rec[idordine]</td>
+                        <td>$rec[login]</td>
+                        <td>$rec[giornoconsegna]</td>
+                        <td>$rec[oraconsegna]</td>
+                        <td>$rec[indirizzoconsegna]</td>
+                        <td><a href='user_visualizza_pizza_utente.php'>
+                            <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Visualizza pizze ordinate</button>
+                        </td>
+                        <td><a href='user_cancella_ordini.php?ido=$rec[idordine]'>
+                            <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Cancella ordine</button>
+                        </td>
+                    </tr>";           
                 }
             ?>                             
         </tr>
