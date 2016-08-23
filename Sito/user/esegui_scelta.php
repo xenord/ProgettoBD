@@ -51,6 +51,7 @@
                     }
                     echo "<p>Hai aggiunto".$flagpizze."pizza/e al tuo ordine!</p>";
                 }
+              }    
             } catch (PDOException $e) { echo $e->getMessage(); }
         ?>
         <br> </br>
