@@ -56,9 +56,9 @@
                 
                 else if ($flag == 1 && $flagbreak == 1 ) {
                     foreach ($state as $key) {
-                        $statement->execute(array($_POST['idpizza'],$key['idordine'],($flagpizze/$countidingredienti)));
+                        $statement->execute(array($_POST['idpizza'],$key['idordine'],($flagpizze/$countidingrediente)));
                     }
-                    echo "<p>hai aggiunto ".($flagpizze/$countidingredienti)." pizza/e al tuo ordine!</p>";
+                    echo "<p>hai aggiunto ".($flagpizze/$countidingrediente)." pizza/e al tuo ordine!</p>";
                 }
             } catch (PDOException $e) { echo $e->getMessage(); }
         ?>
