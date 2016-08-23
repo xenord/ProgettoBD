@@ -22,6 +22,7 @@
                 $flagpizze = 0;
                 $flag = 0;
                 $flagbreak=1;
+                $countidingrediente=0;
                 for($counter = 0; $counter < $_POST['numeropizze']; $counter++) { 
                     foreach ($quantita as $quantitaingredienti) {
                         $idingredienteperpizza = $quantitaingredienti[0];
@@ -34,6 +35,7 @@
                             $flag = 1;
                             // flagpizze conta le pizze che gli ingredienti permettono di fare
                             $flagpizze++;
+                            $countidingrediente++;;
                             aggiorna_magazzino($dbconn,$quantitaingredienteperpizza-1,$idingredienteperpizza);
                         }
                         else {
@@ -54,9 +56,9 @@
                 
                 else if ($flag == 1 && $flagbreak == 1 ) {
                     foreach ($state as $key) {
-                        $statement->execute(array($_POST['idpizza'],$key['idordine'],$flagpizze));
+                        $statement->execute(array($_POST['idpizza'],$key['idordine'],($flagpizze/$countidingredienti)));
                     }
-                    echo "<p>hai aggiunto ".$flagpizze." pizza/e al tuo ordine!</p>";
+                    echo "<p>hai aggiunto ".($flagpizze/$countidingredienti)." pizza/e al tuo ordine!</p>";
                 }
             } catch (PDOException $e) { echo $e->getMessage(); }
         ?>
