@@ -59,7 +59,7 @@
                     foreach ($state as $key) {
                         $statement->execute(array($_POST['idpizza'],$key['idordine'],($flagpizze/$numingredienti)));
                     }
-                    echo "<p>hai aggiunto ".($flagpizze/$numingredienti). $countidingrediente." pizza/e al tuo ordine!</p>";
+                    echo "<p>hai aggiunto ".($flagpizze/$numingredienti)." pizza/e al tuo ordine!</p>";
                 }
             } catch (PDOException $e) { echo $e->getMessage(); }
         ?>
