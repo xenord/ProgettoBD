@@ -17,9 +17,21 @@
 
     try {
         $dbconn = db_connection();
-        $statement = $dbconn->prepare('select crea_ordine(?,?,?,?)');
-        $statement->execute(array($current_user,$dateformat,$timeformat,$_POST['indirizzo']));
-        header('Location: user_aggiunta_pizze.php');
+        $check = $dbconn->prepare('select count(*) from ordini where login = ? and giornoconsegna = ?');
+        $check->execute(array($current_user,$dateformat));
+        foreach ($check as $check_o) {
+            if ($check_o[0] == 1) {
+                echo "Ordine esistente!";
+                echo "<br></br>";
+                echo "Cambiare data oppure cancella l'ordine e rifai";
+                header( "refresh:2;url=esegui_scelta.php" );
+            }
+            else {
+                $statement = $dbconn->prepare('select crea_ordine(?,?,?,?)');
+                $statement->execute(array($current_user,$dateformat,$timeformat,$_POST['indirizzo']));
+                header('Location: user_aggiunta_pizze.php');
+            }
+        }
     } catch (PDOException $e) { echo $e->getMessage(); }
 
 ?>
