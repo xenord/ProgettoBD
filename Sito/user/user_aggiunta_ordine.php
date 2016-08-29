@@ -24,7 +24,7 @@
                 echo "Ordine esistente!";
                 echo "<br></br>";
                 echo "Cambiare data oppure cancella l'ordine e rifai";
-                header( "refresh:2;url=esegui_scelta.php" );
+                header( "refresh:2;url=user.php" );
             }
             else {
                 $statement = $dbconn->prepare('select crea_ordine(?,?,?,?)');
