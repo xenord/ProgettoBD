@@ -4,6 +4,7 @@
     if (empty($_POST['indirizzo'])) {
         header('Location:user_crea_ordine.php?errore=campivuoti');
     }
+    $current_user = $_SESSION['login'];
 
     $year = $_POST['year'];
     $month = $_POST['months'];
@@ -13,10 +14,12 @@
     $minute=$_POST['minutes'];
     $hour=$_POST['hours'];
     $timeformat=$hour.":".$minute.":"."00";
+
     try {
         $dbconn = db_connection();
         $statement = $dbconn->prepare('select crea_ordine(?,?,?,?)');
-        $statement->execute(array($_SESSION['login'],$dateformat,$timeformat,$_POST['indirizzo']));
+        $statement->execute(array($current_user,$dateformat,$timeformat,$_POST['indirizzo']));
         header('Location: user_aggiunta_pizze.php');
     } catch (PDOException $e) { echo $e->getMessage(); }
-?>              
+
+?>

@@ -14,53 +14,58 @@
 
         <?php
             try {
-        	    $dbconn = db_connection();
-                $state = $dbconn->prepare('select IDordine from ordini where login = ?');
+                $dbconn = db_connection();
+                $state = $dbconn->prepare('select idordine from ordini where login = ?');
                 $state->execute(array($_SESSION['login']));
-        	    $statement = $dbconn->prepare('select inserisci_pizza_in_ordine(?,?,?)');
-                $quantita = ingredienti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
-                $flagpizze = 0;
-                $flag = 0;
-                $flagbreak=1;
-                $numingredienti=numero_ingredienti_per_pizza($dbconn,$_POST['idpizza']);
-                for($counter = 0; $counter < $_POST['numeropizze']; $counter++) { 
+                foreach ($state as $iter) {
+                    $ido = $iter['idordine'];
+                    break;
+                }
+                $check = $dbconn->prepare('select count(*) from pizzecontenute where idordine = ? and idpizza = ?');
+                $check->execute(array($ido,$_POST['idpizza']));
+                foreach ($check as $check_o) {
+                    if ($check_o[0] == 1) {
+                        echo "Stai selezionando più volte lo stesso tipo di pizza";
+                    }
+                    else {
+                $view = view_ingrediente_con_meno_quantita($dbconn, $_POST['idpizza']);
+                foreach ($view as $key) {
+                        $min = $key['quantita'];
+                }
+                echo "Ingrediente con minore  quantità di tutti ha valore: ".$min;
+                echo "<br></br>";
+                if ($min <= 0) {
+                    echo "Non ci sono ingredienti sufficienti per nemmeno una pizza :'(";
+                    echo "<br></br>";
+                }
+                else if (($_POST['numeropizze'] > $min) && ($min > 0)) {
+                    $statem = $dbconn->prepare('select inserisci_pizza_in_ordine(?,?,?)');
+                    $statem->execute(array($_POST['idpizza'],$ido,$min));
+                    $quantita = ingredienti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
                     foreach ($quantita as $quantitaingredienti) {
                         $idingredienteperpizza = $quantitaingredienti[0];
                         $quantitaingredienteperpizza = $quantitaingredienti[1];
-                        if ($quantitaingredienteperpizza > 0) {
-                            // flag = 1 perchè se gli ingredienti permettono di fare almeno una di quel tipo di pizza
-                            // allora viene inserita nel database
-                            // se il flag non dovesse andare MAI a 1 allora vuol dire che non ci sono ingrediente nemmeno per fare una pizza
-                            // di quel tipo
-                            $flag = 1;
-                            // flagpizze conta le pizze che gli ingredienti permettono di fare
-                            $flagpizze++;
-
-                            
-                            aggiorna_magazzino($dbconn,$quantitaingredienteperpizza-1,$idingredienteperpizza);
-                        }
-                        else {
-                            
-                            $flagbreak=0;
-                            break;
-                        }
-                        $quantita = ingredienti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
-                        
+                        aggiorna_magazzino($dbconn,$quantitaingredienteperpizza-$min,$idingredienteperpizza);
                     }
+                    echo "Putroppo gli ingredienti non sono sufficienti per fare tutte le pizze.";
+                    echo "<br></br>";
+                    echo "Verranno aggiunte"." ".$min." "."pizze al database anzichè"." ".$_POST['numeropizze'];
+                    echo "<br></br>";
                 }
-                
-                if($flagbreak == 0)
-                {
-                    echo "non ci sono abbastanza ingredienti per fare ".$_POST['idpizza'];
-                }
-                
-                
-                else if ($flag == 1 && $flagbreak == 1 ) {
-                    foreach ($statement as $key) {
-                        $key->execute(array($_POST['idpizza'],$key['idordine'],($flagpizze/$numingredienti)));
+                else {
+                    $statement = $dbconn->prepare('select inserisci_pizza_in_ordine(?,?,?)');
+                    $statement->execute(array($_POST['idpizza'],$ido,$_POST['numeropizze']));
+                    $quantita = ingredienti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
+                    foreach ($quantita as $quantitaingredienti) {
+                        $idingredienteperpizza = $quantitaingredienti[0];
+                        $quantitaingredienteperpizza = $quantitaingredienti[1];
+                        aggiorna_magazzino($dbconn,$quantitaingredienteperpizza-$_POST['numeropizze'],$idingredienteperpizza);
                     }
-                    echo "<p>hai aggiunto ".($flagpizze/$numingredienti)." pizza/e al tuo ordine!</p>";
+                    echo "Le Pizze sono state aggiunte all'ordine!";
+                    echo "<br></br>";
                 }
+                }
+            }
             } catch (PDOException $e) { echo $e->getMessage(); }
         ?>
         <br> </br>
@@ -69,3 +74,4 @@
         
     </body>
 </html>
+        
