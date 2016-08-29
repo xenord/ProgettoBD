@@ -89,6 +89,7 @@
             <th>Ora di consegna</th> 
             <th>Indirizzo di consegna</th>
             <th>Visualizza pizze ordinate</th>
+            <th>Modifica ordine</th>
             <th>Cancella ordine</th>
         </tr>
 
@@ -104,6 +105,9 @@
                     <td>$rec[indirizzoconsegna]</td>
                     <td><a href='admin_visualizza_pizza_utente.php?usr=$rec[login]'>
                         <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Visualizza pizze ordinate</button>
+                    </td>
+                    <td><a href='admin_modifica_ordine.php?usr=$rec[login]&ido=$rec[idordine]'>
+                        <button class='form-control btn btn-primary' name='modifica' style='text-align:center;'>Modifica ordine</button>
                     </td>
                     <td><a href='admin_cancella_ordini.php?usr=$rec[login]&ido=$rec[idordine]'>
                         <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Cancella ordine</button>
