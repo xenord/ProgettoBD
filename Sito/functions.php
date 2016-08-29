@@ -154,6 +154,22 @@ $$ language sql;
         return $stat;
     }
 
-    
+    function numero_ingredienti_per_pizza($dbconn,$idp) {
+        $stat=$dbconn->prepare('select count(idingrediente) from disponibilitaingredienti where idpizza = ?');
+        $stat->execute(array($idp));
+        return $stat;
+    }
+
+    function idordine_data_una_login($dbconn,$usr) {
+        $stat = $dbconn->prepare('select IDordine from ordini where login = ?');
+        $stat->execute(array($usr));
+        return $stat;
+    }
+
+    function view_ingrediente_con_meno_quantita($dbconn, $idi) {
+        $stat = $dbconn->prepare('select m.quantita from disponibilitaingredienti di, magazzino m where di.idingrediente = m.idingrediente and di.idpizza = ? order by m.quantita asc limit 1;');
+        $stat->execute(array($idi));
+        return $stat;
+    }
 
 ?>
