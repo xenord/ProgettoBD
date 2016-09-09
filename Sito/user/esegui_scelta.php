@@ -1,25 +1,41 @@
-<?php  
-    /*Salva nel database le pizze scelte per l'ordine in corso e chiede se aggiungere altre pizze o completare l'ordinazione.*/
-    require "../functions.php";
-    verifica_accesso();
-?>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Ordinazione pizze</title>
-    </head>
-    <body>
-        <h1>Scelta pizza</h1>
-        <h3>E' possibile scegliere solo un tipo di pizza per volta</h3>
+<!DOCTYPE html>
+<html lang="it">
 
+    <!-- Meta e CSS -->
+    <head>
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description"
+              content="Progetto Basi di Dati, pizzeria online">
+        <meta name="author" content="Giacomo Ulliana, Francesco Benetello, Federico Carraro">
+        <!-- CSS -->
+        <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="../css/personal.css">
+        <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+        <!-- Titolo -->
+        <title>Conferma pizze</title>
+    </head>
+
+    <?php  
+        /*Salva nel database le pizze scelte per l'ordine in corso e chiede se aggiungere altre pizze o completare l'ordinazione.*/
+        require "../functions.php";
+        verifica_accesso();
+    ?>
+
+    <body>
+        <br></br>
+        <h3>E' possibile scegliere solo un tipo di pizza per volta</h3>
+        <br></br>
         <?php
             try {
                 $dbconn = db_connection();
-                $state = $dbconn->prepare('select idordine from ordini where login = ?');
+                $state = $dbconn->prepare('select idordine from ordini where login = ? order by idordine desc limit 1');
                 $state->execute(array($_SESSION['login']));
                 foreach ($state as $iter) {
                     $ido = $iter['idordine'];
-                    break;
+                    
                 }
                 $check = $dbconn->prepare('select count(*) from pizzecontenute where idordine = ? and idpizza = ?');
                 $check->execute(array($ido,$_POST['idpizza']));
@@ -32,7 +48,9 @@
                         foreach ($view as $key) {
                                 $min = $key['quantita'];
                         }
-                        echo "Ingrediente con minore  quantità di tutti ha valore: ".$min;
+                        /*   E' stato aggiunto per debug
+                         *   echo "Ingrediente con minore quantità di tutti ha valore: ".$min;
+                         */
                         echo "<br></br>";
                         if ($min <= 0) {
                             echo "Non ci sono ingredienti sufficienti per nemmeno una pizza :'(";
@@ -69,8 +87,8 @@
             } catch (PDOException $e) { echo $e->getMessage(); }
         ?>
         <br> </br>
-        <p> <a href="user_aggiunta_pizze.php">Aggiungi un'altra pizza all'ordine</a> </p>
-        <p> <a href="user.php">Completa l'ordine </a></p>
+        <p> <a href="user_aggiunta_pizze.php" class='form-control btn btn-primary' style='width: 500px;'>Aggiungi un'altra pizza all'ordine</a> </p>
+        <p> <a href="user.php" class='form-control btn btn-primary' style='width: 500px;'>Completa l'ordine </a></p>
         
     </body>
 </html>

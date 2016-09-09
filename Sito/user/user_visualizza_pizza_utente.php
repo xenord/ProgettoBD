@@ -24,7 +24,7 @@
 
         <a href='user_lista_ordini.php'>
         <button class='form-control btn btn-primary' style='text-align:left; width:500px;'>Ritorna alla pagina precedente</button>
-
+        </a>
         <div class="container">
             <br></br>
             <table class="table table-bordered">
@@ -37,11 +37,12 @@
                     try {
                         $dbconn = db_connection();
                         /* ppo = Pizze Per Ordine ;-) */
-                        $ppo = pizze_per_ordine($dbconn,$_SESSION['login']);
+                        $ppo = pizze_per_idordine($dbconn,$_SESSION['login'],$_POST['idordine']);
+
                         foreach($ppo as $rec) {
-                            echo "<tr>
-                                <td>$rec[0]</td>
-                                <td>$rec[1]</td>
+                            echo "<tr> 
+                                <td>$rec[0] </td>
+                                <td>$rec[1] </td>
                             </tr>";
                         }
                     } catch (PDOException $e) { echo $e->getMessage(); }

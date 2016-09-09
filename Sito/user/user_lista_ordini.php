@@ -102,8 +102,12 @@
                         <td>$rec[giornoconsegna]</td>
                         <td>$rec[oraconsegna]</td>
                         <td>$rec[indirizzoconsegna]</td>
-                        <td><a href='user_visualizza_pizza_utente.php'>
+                        <td><form action=user_visualizza_pizza_utente.php method='post'>
+                        <input type='hidden' name='idordine' value='$rec[idordine]'>
+
                             <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Visualizza pizze ordinate</button>
+                            
+                            </form>
                         </td>
                         <td><a href='user_cancella_ordini.php?ido=$rec[idordine]'>
                             <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Cancella ordine</button>

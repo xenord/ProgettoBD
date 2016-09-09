@@ -148,11 +148,19 @@ $$ language sql;
         $stat->execute(array($quant,$idi));
     }
 
+
     function pizze_per_ordine($dbconn,$usr) {
         $stat=$dbconn->prepare('select p.nome, pc.numeropizze from ordini o, pizzecontenute pc, pizze p where pc.idordine = o.idordine and p.idpizza = pc.idpizza and o.login = ?');
         $stat->execute(array($usr));
         return $stat;
     }
+
+   function pizze_per_idordine($dbconn,$usr,$id) {
+        $stat=$dbconn->prepare('select p.nome, pc.numeropizze from ordini o, pizzecontenute pc, pizze p where pc.idordine = o.idordine and p.idpizza = pc.idpizza and o.login = ? and o.idordine=?');
+        $stat->execute(array($usr,$id));
+        return $stat;
+    }
+
 
     function numero_ingredienti_per_pizza($dbconn,$idp) {
         $stat=$dbconn->prepare('select count(idingrediente) from disponibilitaingredienti where idpizza = ?');

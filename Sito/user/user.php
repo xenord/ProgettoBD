@@ -82,7 +82,7 @@
     <div class="row">
         <a class="gerarchia-livello-0"><h3>Gestione ordini</h3></a><br>
         <br>
-        <a class="gerarchia-livello-1" href="user_lista_ordini.php"><Button style="text-align:center;">Visualizza/Modifica/Cancella ordini</button></a><br>
+        <a class="gerarchia-livello-1" href="user_lista_ordini.php"><Button style="text-align:center;">Visualizza/Cancella ordini</button></a><br>
         <br>
         <a class="gerarchia-livello-1" href="user_crea_ordine.php"><Button style="text-align:center;">Crea un ordine</button></a><br>
         <br>
