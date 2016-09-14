@@ -77,6 +77,14 @@
 
 
 <!-- In Evidenza -->
+<?php        
+    if($_GET['msg']=='ricaricaavvenuta') {
+        echo "<p style:'text-align: center;'> <font color=#00bb00 face=arial><b>Ricarica avvenuta con successo!</b></font></p>";
+    }
+    else if( $_GET['errore'] == 'quantitanonvalida') {
+        echo "<p style:'text-align:center;'> <font color=red face=arial><b>Quantità inserita non valida!</b></font></p>";
+    }     
+?>
         <br>
         <br>
 <section id="disponibilita_ingredienti" class="disponibilita_ingredienti"> 
@@ -138,7 +146,7 @@
                 <td>
                     <label>Quantità da aggiungere</label>
                     <br>
-                    <input type="int" name="quantita" value="0">  
+                    <input type="int" name="quantita" value="1">  
                     <br>
                     </br>
                     <button class="form-control btn btn-primary" type="submit" value="Ricarica Ingrediente">Ricarica Ingrediente</button>
@@ -146,12 +154,7 @@
             </tr>
         </form>
     </div>
-<section>
-<?php        
-    if($_GET['msg']=='ricaricaavvenuta') {
-        echo "<div class='ricaricaavvenuta'> <font color=darkgreen face=arial><b>Ricarica avvenuta con successo</b></font></div><br>";
-    }     
-?>  
+<section>  
 <br>
 <br>
 <!-- Footer -->

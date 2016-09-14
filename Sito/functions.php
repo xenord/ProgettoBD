@@ -150,7 +150,7 @@ $$ language sql;
 
 
     function pizze_per_ordine($dbconn,$usr) {
-        $stat=$dbconn->prepare('select p.nome, pc.numeropizze from ordini o, pizzecontenute pc, pizze p where pc.idordine = o.idordine and p.idpizza = pc.idpizza and o.login = ?');
+        $stat=$dbconn->prepare('select p.idpizza, p.nome, pc.numeropizze from ordini o, pizzecontenute pc, pizze p where pc.idordine = o.idordine and p.idpizza = pc.idpizza and o.login = ?');
         $stat->execute(array($usr));
         return $stat;
     }
@@ -178,6 +178,16 @@ $$ language sql;
         $stat = $dbconn->prepare('select m.quantita from disponibilitaingredienti di, magazzino m where di.idingrediente = m.idingrediente and di.idpizza = ? order by m.quantita asc limit 1;');
         $stat->execute(array($idi));
         return $stat;
+    }
+
+    function aggiorna_numero_pizze($dbconn,$numpiz,$idp,$ido) {
+        $stat=$dbconn->prepare('update pizzecontenute set numeropizze=? where idpizza=? and idordine=?');
+        $stat->execute(array($numpiz,$idp,$ido));
+    }
+
+     function ripristina_ingredienti($dbconn,$numpiz,$idp,$ido) {
+        $stat=$dbconn->prepare('update disponibilitaingredienti set numeropizze=? where idpizza=? and idordine=?');
+        $stat->execute(array($numpiz,$idp,$ido));
     }
 
 ?>

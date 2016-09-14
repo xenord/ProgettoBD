@@ -21,11 +21,13 @@
             require "../functions.php";
             verifica_accesso();
             echo "<br></br>";
-            echo "<p>Hai selezionato l'ordine dell'utente: ".$_GET['usr']."</p>";
+            echo "<p>Hai selezionato l'ordine dell'utente: ".$_GET['user']."</p>";
+            echo "<p>IDordine: ".$_GET['idordine']."</p>";
+            echo "<p>IDpizza: ".$_GET['codpizza']."</p>";
         ?>
 
         <a href='admin_lista_ordini.php'>
-        <button class='form-control btn btn-primary' style='text-align:left; width:500px;'>Ritorna alla pagina precedente</button>
+        <button class='form-control btn btn-primary' style='text-align:left; width:500px;'>Ritorna alla lista ordini</button>
         </a>
         <div class="container">
             <br></br>
@@ -35,29 +37,29 @@
                     <th>Nome pizza</th>
                     <th>Numero pizze ordinate</th>
                     <th>Modifica numero di pizze</th>
-                    <th>Cancella tutte le pizze di questo tipo</th>
                 </tr>
 
                 <?php
                     try {
                         $dbconn = db_connection();
-                        /* ppo = Pizze Per Ordine ;-) */
-                        $ppo = pizze_per_ordine($dbconn,$_GET['usr']);
-                        foreach($ppo as $rec) {
+                        $stat=$dbconn->prepare('select p.idpizza, p.nome, pc.numeropizze from ordini o, pizzecontenute pc, pizze p where pc.idordine = o.idordine and p.idpizza = pc.idpizza and o.login = ? and o.idordine=? and p.idpizza = ?');
+                        $stat->execute(array($_GET['user'],$_GET['idordine'],$_GET['codpizza']));
+                        foreach ($stat as $state) {
                             echo "<tr>
-                                <td>$rec[0]</td>
-                                <td>$rec[1]</td>
-                                <td>$rec[2]</td>
-                                <td><a href='admin_modifica_numero_pizze.php?user=$_GET[usr]&idordine=$_GET[ido]&codpizza=$rec[0]'>
-                                <button class='form-control btn btn-primary' name='modifica_pizze' style='text-align:center;'>Modifica quantità</button>
+                                <td>$state[0]</td>
+                                <td>$state[1]</td>
+                                <td><form action='admin_modifica_numero_pizze_aus.php?codp=$_GET[codpizza]&ido=$_GET[idordine]' method='post'>
+                                <input type='int' name='numeropizze' value=$state[2]>
+                                <input type='hidden' name='numeropizzereali' value=$state[2]>
                                 </td>
-                                <td><a href='admin_cancella_tipo_pizze.php'>
-                                    <button class='form-control btn btn-primary' name='modifica_pizze' style='text-align:center;'>Cancella tutte le pizze</button></td>
+                                <td><button class='form-control btn btn-primary' type='submit'>Modifica</button></td>
+                                </form>
                             </tr>";
                         }
                     } catch (PDOException $e) { echo $e->getMessage(); }
                 ?> 
             </table>
+            <br></br>
         </div>
 
         <br>

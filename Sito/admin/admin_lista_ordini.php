@@ -77,6 +77,21 @@
 
 
 <!-- In Evidenza -->
+<?php
+    if ($_GET['msg'] == 'modificaavvenuta') {
+        echo "<p style:'text-align:center;'> <font color=#00bb00 face=arial><b>Modifica avvenuta con successo!</b></font></p>";
+    }
+    else if ($_GET['errore'] == 'ingredientiinsufficienti') {
+        echo "<p style:'text-align:center;'> <font color=red face=arial><b>Ingredienti insufficienti!</b></font></p>";
+    }
+    else if ($_GET['errore'] == 'ingredientiparziali') {
+        echo "<p style:'text-align:center;'> <font color=red face=arial><b>Ingredienti insufficienti per fare tutte le pizze.
+        Sono state aggiunte ".$_GET['minimun']." anzichè ".$_GET['nump']."</b></font></p>";
+    }
+    else if ($_GET['errore'] =='quantitainvalida') {
+        echo "<p style:'text-align:center;'> <font color=red face=arial><b>Quantità inserita è invalida</b></font></p>";
+    }
+?>
     
 <br>
 <br>       
@@ -103,8 +118,8 @@
                     <td>$rec[giornoconsegna]</td>
                     <td>$rec[oraconsegna]</td>
                     <td>$rec[indirizzoconsegna]</td>
-                    <td><a href='admin_visualizza_pizza_utente.php?usr=$rec[login]'>
-                        <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Visualizza pizze ordinate</button>
+                    <td><a href='admin_visualizza_pizza_utente.php?usr=$rec[login]&ido=$rec[idordine]'>
+                        <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Visualizza/Modfica pizze</button>
                     </td>
                     <td><a href='admin_modifica_ordine.php?usr=$rec[login]&ido=$rec[idordine]'>
                         <button class='form-control btn btn-primary' name='modifica' style='text-align:center;'>Modifica ordine</button>

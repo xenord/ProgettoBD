@@ -12,10 +12,15 @@
             $stat->execute(array($_POST['nomeingrediente']));
             $res = $stat->fetch();
             $insert = $dbconn->prepare('UPDATE magazzino SET quantita=? WHERE nomeingrediente=?');
-            $quantita_da_inserire = $_POST['quantita'] + $res[0];
-            $insert->execute(array($quantita_da_inserire, $_POST['nomeingrediente']));
-            $result = $insert->fetch();
-            header('Location:admin_ricarica_magazzino.php?msg=ricaricaavvenuta');
+            if ($_POST['quantita'] <= 0) {
+                header('Location:admin_ricarica_magazzino.php?errore=quantitanonvalida');
+            }
+            else {
+                $quantita_da_inserire = $_POST['quantita'] + $res[0];
+                $insert->execute(array($quantita_da_inserire, $_POST['nomeingrediente']));
+                $result = $insert->fetch();
+                header('Location:admin_ricarica_magazzino.php?msg=ricaricaavvenuta');
+            }
         } 
     } catch (PDOException $e) { echo $e->getMessage(); }
            
