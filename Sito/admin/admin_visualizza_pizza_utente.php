@@ -48,10 +48,10 @@
                                 <td>$rec[0]</td>
                                 <td>$rec[1]</td>
                                 <td>$rec[2]</td>
-                                <td><a href='admin_modifica_numero_pizze.php?user=$_GET[usr]&idordine=$_GET[ido]&codpizza=$rec[0]'>
+                                <td><a href='admin_modifica_numero_pizze.php?user=$_GET[usr]&idordine=$_GET[ido]&codpizza=$rec[0]&gco=$_GET[gc]'>
                                 <button class='form-control btn btn-primary' name='modifica_pizze' style='text-align:center;'>Modifica quantità</button>
                                 </td>
-                                <td><a href='admin_cancella_tipo_pizze.php'>
+                                <td><a href='admin_cancella_tipo_pizze.php?user=$_GET[usr]&idordine=$_GET[ido]&codpizza=$rec[0]&numpizze=$rec[2]&gco=$_GET[gc]'>
                                     <button class='form-control btn btn-primary' name='modifica_pizze' style='text-align:center;'>Cancella tutte le pizze</button></td>
                             </tr>";
                         }

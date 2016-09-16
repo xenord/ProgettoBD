@@ -1,8 +1,8 @@
 <?php
-    require "../functions.php";
+	require "../functions.php";
     verifica_accesso();
+    $dbconn = db_connection();
     try {
-        $dbconn = db_connection();
         $statem = $dbconn->prepare('select count(*) from pizzecontenute where idordine = ?');
         $statem->execute(array($_GET['ido']));
                 $current_date=getdate(date("U"));
@@ -51,30 +51,23 @@
 
         $date = $current_date[year]."-".$month_number."-".$current_date[mday];
         $today_time = strtotime($date);
-        $expire_time = strtotime($_GET['gc']);
+        $expire_time = strtotime($_GET['gco']);
+
 
         if ($expire_dt < $today_dt) {
-            $statement = $dbconn->prepare('delete from pizzecontenute where idordine=?');
-            $statement->execute(array($_GET['ido']));
-            $rec = $statement->fetch();
-            $state = $dbconn->prepare('select cancella_ordine(?,?)');
-            $state->execute(array($_SESSION['login'],$_GET['ido']));
-            header('Location:user_lista_ordini.php?msg=cancellazioneavvenuta');
+            header('Location:admin_lista_ordini.php?errore=ordinevecchio');    
         }
         else {
-            foreach ($statem as $key) {
-                if ($key[0] >= 1) {
-                    header('Location:admin_lista_ordini.php?errore=warningpizze');   
-                }
-                else {
-                    $statement = $dbconn->prepare('delete from pizzecontenute where idordine=?');
-                    $statement->execute(array($_GET['ido']));
-                    $rec = $statement->fetch();
-                    $state = $dbconn->prepare('select cancella_ordine(?,?)');
-                    $state->execute(array($_GET['usr'],$_GET['ido']));
-                    header('Location:admin_lista_ordini.php?msg=cancellazionesavvenuta');
-                }
-            }
+    	    $statem = $dbconn->prepare('select di.idingrediente, m.quantita from disponibilitaingredienti di, magazzino m where idpizza = ? and di.idingrediente = m.idingrediente');
+            $statem->execute(array($_GET['codpizza']));
+       	    foreach ($statem as $key) {
+           		$idingrediente=$key[0];
+           		$quantitaingrediente=$key[1];
+           		aggiorna_magazzino($dbconn,$quantitaingrediente+$_GET['numpizze'],$idingrediente);
+           	}
+    	   $state = $dbconn->prepare('delete from pizzecontenute where idordine = ? and idpizza = ?');
+    	   $state->execute(array($_GET['idordine'],$_GET['codpizza']));
+    	   header('Location:admin_lista_ordini.php?msg=cancellazionesavvenuta');
         }
-    } catch (PDOException $e) { echo $e->getMessage(); }
+	} catch (PDOException $e) { echo $e->getMessage(); }
 ?>

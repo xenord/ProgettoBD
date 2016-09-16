@@ -91,6 +91,18 @@
     else if ($_GET['errore'] =='quantitainvalida') {
         echo "<p style:'text-align:center;'> <font color=red face=arial><b>Quantità inserita è invalida</b></font></p>";
     }
+    else if ($_GET['msg'] =='cancellazionesavvenuta') {
+        echo "<p style:'text-align:center;'> <font color=#00bb00 face=arial><b>Cancellazione ordine avvenuta con successo!</b></font></p>";
+    }
+    else if ($_GET['errore'] =='warningpizze') {
+        echo "<p style:'text-align:center;'> <font color=red face=arial><b>Ci sono delle pizze registrate! Cancella le pizze e rifai!</b></font></p>";
+    }
+    else if ($_GET['errore'] == 'ordinevecchio') {
+        echo "<p style:'text-align:center;'> <font color=red face=arial><b>L'ordine è vecchio! Non puoi cancellare le pizze!</b></font></p>";
+    }
+    else if ($_GET['errore'] == 'ordinevecchionumpizze') {
+        echo "<p style:'text-align:center;'> <font color=red face=arial><b>L'ordine è vecchio! Non puoi modificare le pizze!</b></font></p>";
+    }
 ?>
     
 <br>
@@ -118,13 +130,13 @@
                     <td>$rec[giornoconsegna]</td>
                     <td>$rec[oraconsegna]</td>
                     <td>$rec[indirizzoconsegna]</td>
-                    <td><a href='admin_visualizza_pizza_utente.php?usr=$rec[login]&ido=$rec[idordine]'>
-                        <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Visualizza/Modfica pizze</button>
+                    <td><a href='admin_visualizza_pizza_utente.php?usr=$rec[login]&ido=$rec[idordine]&gc=$rec[giornoconsegna]'>
+                        <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Visualizza/Modfica/Cancella pizze</button>
                     </td>
                     <td><a href='admin_modifica_ordine.php?usr=$rec[login]&ido=$rec[idordine]'>
                         <button class='form-control btn btn-primary' name='modifica' style='text-align:center;'>Modifica ordine</button>
                     </td>
-                    <td><a href='admin_cancella_ordini.php?usr=$rec[login]&ido=$rec[idordine]'>
+                    <td><a href='admin_cancella_ordini.php?usr=$rec[login]&ido=$rec[idordine]&gc=$_GET[giornoconsegna]'>
                         <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Cancella ordine</button>
                     </td>
                 </tr>";

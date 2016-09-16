@@ -48,7 +48,7 @@
                             echo "<tr>
                                 <td>$state[0]</td>
                                 <td>$state[1]</td>
-                                <td><form action='admin_modifica_numero_pizze_aus.php?codp=$_GET[codpizza]&ido=$_GET[idordine]' method='post'>
+                                <td><form action='admin_modifica_numero_pizze_aus.php?codp=$_GET[codpizza]&ido=$_GET[idordine]&gico=$_GET[gco]' method='post'>
                                 <input type='int' name='numeropizze' value=$state[2]>
                                 <input type='hidden' name='numeropizzereali' value=$state[2]>
                                 </td>
