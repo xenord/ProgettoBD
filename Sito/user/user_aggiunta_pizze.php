@@ -27,24 +27,32 @@
         <div class="container">
             <div class="row">
                 <br></br>
-                <h3>Scelta pizza da aggiungere nell'ordine</h3>
+                <h3>Scelta pizza da aggiungere nell'ordine (è possibile scegliere solo un tipo di pizza per volta)</h3>
                 <br></br>
                 <br></br>
                 <?php
-                    try {
-                        $dbconn = db_connection();
-                        $st = $dbconn->prepare('select idpizza, nome, prezzo from pizze');
-                        $st->execute();
-                        echo "<form action='esegui_scelta.php' method='post'>";
-                        foreach($st as $rec) {
-                            echo "<input type='radio' class='radio-inline' name='idpizza' value='$rec[idpizza]'>$rec[idpizza] $rec[nome], $rec[prezzo] euro<br>";
-                        }
-                        echo"<br> </br>";
-                        echo"<tr><td>Quantità: </td><td><input class='btn btn-default' type='int' name='numeropizze' value='1'></td></tr>";
-                        echo "<br></br>";
-                        echo"<input type='submit' class='form-control btn btn-primary' style='width: 500px;' value='Procedi'>";
-                        echo "</form>";
-                    } catch (PDOException $e) { echo $e->getMessage(); }
+                
+                    if($_GET['errore']=="nessunapizza")
+                    {
+                        echo "<font color=red><b>Seleziona una pizza</b></font><br>";
+                    }
+                    
+
+                       try {
+                           $dbconn = db_connection();
+                           $st = $dbconn->prepare('select idpizza, nome, prezzo from pizze');
+                           $st->execute();
+                           echo "<form action='esegui_scelta.php' method='post'>";
+                           foreach($st as $rec) {
+                                echo "<input type='radio' class='radio-inline' name='idpizza' value='$rec[idpizza]'>$rec[idpizza] $rec[nome], $rec[prezzo] euro<br>";
+                           }
+                           echo"<br> </br>";
+                           echo"<tr><td>Quantità: </td><td><input class='btn btn-default' type='int' name='numeropizze' value='1'></td></tr>";
+                           echo "<br></br>";
+                           echo"<input type='submit' class='form-control btn btn-primary' style='width: 500px;' value='Procedi'>";
+                           echo "</form>";
+                        } catch (PDOException $e) { echo $e->getMessage(); }
+                    
                 ?>
             </div>
         </div>
