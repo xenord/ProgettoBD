@@ -42,7 +42,7 @@
                     try {
                         $dbconn = db_connection();
                         /* ppo = Pizze Per Ordine ;-) */
-                        $ppo = pizze_per_ordine($dbconn,$_GET['usr']);
+                        $ppo = pizze_per_ordine($dbconn,$_GET['usr'],$_GET['ido']);
                         foreach($ppo as $rec) {
                             echo "<tr>
                                 <td>$rec[0]</td>

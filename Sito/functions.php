@@ -149,9 +149,9 @@ $$ language sql;
     }
 
 
-    function pizze_per_ordine($dbconn,$usr) {
-        $stat=$dbconn->prepare('select p.idpizza, p.nome, pc.numeropizze from ordini o, pizzecontenute pc, pizze p where pc.idordine = o.idordine and p.idpizza = pc.idpizza and o.login = ?');
-        $stat->execute(array($usr));
+    function pizze_per_ordine($dbconn,$usr,$ido) {
+        $stat=$dbconn->prepare('select p.idpizza, p.nome, pc.numeropizze from ordini o, pizzecontenute pc, pizze p where pc.idordine = o.idordine and p.idpizza = pc.idpizza and o.login = ? and pc.idordine = ?');
+        $stat->execute(array($usr,$ido));
         return $stat;
     }
 
