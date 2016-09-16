@@ -81,16 +81,15 @@
                             require "../functions.php";
                                 try {
                                     $dbconn=db_connection();
-                                    echo $_GET['pizzasearch'];
                                     $prova=cerca_pizze($dbconn, $_POST['pizzasearch']);
+                                   
                                     if($prova>0 ){
                                         $ciao= 0;
                                         foreach ($prova as $provo ) {
                                             $ciao = $ciao +1;
                                         }
-                                        if($ciao){
+                                        if($ciao && $_POST['pizzasearch']!=' '){
                                             $dbconn=db_connection();
-                                            echo $_GET['pizzasearch'];
                                             $ris=cerca_pizze($dbconn, $_POST['pizzasearch']);
                                             echo "<table class='table table-bordered'>
                                                     <thead>
