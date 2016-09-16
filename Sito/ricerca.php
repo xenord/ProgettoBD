@@ -96,57 +96,7 @@
 
             <!-- Modulo Registrazione -->
             <?php
-            /*
-                require "functions.php";
 
-                if($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-                    $loginErr = $nomeErr = $cognomeErr = $indirizzoErr = $passwordErr = "";
-                    $login = $nome = $cognome = $indirizzo = $password =  "";
-                    $telefonoErr = 0;
-                    $telefono = 0;
-
-                    if (empty($_POST["login"])) {
-                        $loginErr = "Username mancante!";
-                    }  
-                    if (empty($_POST["nome"])) {
-                        $nomeErr = "Nome mancante!";
-                    }  
-                    if (empty($_POST["cognome"])) {
-                        $cognomeErr = "Cognome mancante!";
-                    }
-                    if (empty($_POST["indirizzo"])) {
-                        $indirizzoErr = "Indirizzo mancante!";
-                    }
-                    if (empty($_POST["password"])) {
-                        $passwordErr = "Password mancante!";
-                    }
-                    if (empty($_POST["telefono"])) {
-                        $telefonoErr = "N° telefono mancante!";
-                    }
-                    else {
-                    try{  
-                        $dbconn = db_connection();
-                        $statement = $dbconn->prepare('select count (*) from utenti where login = ?');
-                        $statement->execute(array($_POST['login']));
-                        $rec = $statement->fetch();
-                        if ($rec[0] == 1) {               
-                            header('Location:registrazione.php?errore=utenteesistente');
-                        }
-                        else{
-                            session_start();
-                            $_SESSION['login'] = $_POST['login'];
-
-                            inserisci_utente($dbconn);
-                            echo "<font color=darkgreen face=arial><b>Registrazione effettuata</b></font><br>";
-                        }
-                    } catch (PDOException $e) { echo $e->getMessage(); }
-                }
-                }
-                else {
-                    $error = "Questo non dovrebbe succedere!";
-                }
-                */
             ?>
             
             <div class="modal fade" id="registrazione" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -266,16 +216,15 @@
                             require "functions.php";
                                 try {
                                     $dbconn=db_connection();
-                                    echo $_GET['pizzasearch'];
                                     $prova=cerca_pizze($dbconn, $_POST['pizzasearch']);
+                                   
                                     if($prova>0 ){
                                         $ciao= 0;
                                         foreach ($prova as $provo ) {
                                             $ciao = $ciao +1;
                                         }
-                                        if($ciao){
+                                        if($ciao && $_POST['pizzasearch']!=' '){
                                             $dbconn=db_connection();
-                                            echo $_GET['pizzasearch'];
                                             $ris=cerca_pizze($dbconn, $_POST['pizzasearch']);
                                             echo "<table class='table table-bordered'>
                                                     <thead>
