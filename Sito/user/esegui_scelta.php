@@ -15,81 +15,46 @@
         <link rel="stylesheet" href="../css/personal.css">
         <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
         <!-- Titolo -->
-        <title>Conferma pizze</title>
+        <title>Aggiunta pizze</title>
     </head>
 
     <?php  
-        /*Salva nel database le pizze scelte per l'ordine in corso e chiede se aggiungere altre pizze o completare l'ordinazione.*/
         require "../functions.php";
         verifica_accesso();
     ?>
 
     <body>
-        <br></br>
-        <h3>E' possibile scegliere solo un tipo di pizza per volta</h3>
-        <br></br>
-        <?php
-            try {
-                $dbconn = db_connection();
-                $state = $dbconn->prepare('select idordine from ordini where login = ? order by idordine desc limit 1');
-                $state->execute(array($_SESSION['login']));
-                foreach ($state as $iter) {
-                    $ido = $iter['idordine'];
+        <div class="container">
+            <div class="row">
+                <br></br>
+                <h3>Scelta pizza da aggiungere nell'ordine (è possibile scegliere solo un tipo di pizza per volta)</h3>
+                <br></br>
+                <br></br>
+                <?php
+                
+                    if($_GET['errore']=="nessunapizza")
+                    {
+                        echo "<font color=red><b>Seleziona una pizza</b></font><br>";
+                    }
                     
-                }
-                $check = $dbconn->prepare('select count(*) from pizzecontenute where idordine = ? and idpizza = ?');
-                $check->execute(array($ido,$_POST['idpizza']));
-                foreach ($check as $check_o) {
-                    if ($check_o[0] == 1) {
-                        echo "Stai selezionando più volte lo stesso tipo di pizza";
-                    }
-                    else {
-                        $view = view_ingrediente_con_meno_quantita($dbconn, $_POST['idpizza']);
-                        foreach ($view as $key) {
-                                $min = $key['quantita'];
-                        }
-                        /*   E' stato aggiunto per debug
-                         *   echo "Ingrediente con minore quantità di tutti ha valore: ".$min;
-                         */
-                        echo "<br></br>";
-                        if ($min <= 0) {
-                            echo "Non ci sono ingredienti sufficienti per nemmeno una pizza :'(";
-                            echo "<br></br>";
-                        }
-                        else if (($_POST['numeropizze'] > $min) && ($min > 0)) {
-                            $statem = $dbconn->prepare('select inserisci_pizza_in_ordine(?,?,?)');
-                            $statem->execute(array($_POST['idpizza'],$ido,$min));
-                            $quantita = ingredienti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
-                            foreach ($quantita as $quantitaingredienti) {
-                                $idingredienteperpizza = $quantitaingredienti[0];
-                                $quantitaingredienteperpizza = $quantitaingredienti[1];
-                                aggiorna_magazzino($dbconn,$quantitaingredienteperpizza-$min,$idingredienteperpizza);
-                            }
-                            echo "Putroppo gli ingredienti non sono sufficienti per fare tutte le pizze.";
-                            echo "<br></br>";
-                            echo "Verranno aggiunte"." ".$min." "."pizze al database anzichè"." ".$_POST['numeropizze'];
-                            echo "<br></br>";
-                        }
-                        else {
-                            $statement = $dbconn->prepare('select inserisci_pizza_in_ordine(?,?,?)');
-                            $statement->execute(array($_POST['idpizza'],$ido,$_POST['numeropizze']));
-                            $quantita = ingredienti_disponibili_per_pizza($dbconn, $_POST['idpizza']);
-                            foreach ($quantita as $quantitaingredienti) {
-                                $idingredienteperpizza = $quantitaingredienti[0];
-                                $quantitaingredienteperpizza = $quantitaingredienti[1];
-                                aggiorna_magazzino($dbconn,$quantitaingredienteperpizza-$_POST['numeropizze'],$idingredienteperpizza);
-                            }
-                            echo "Le Pizze sono state aggiunte all'ordine!";
-                            echo "<br></br>";
-                        }
-                    }
-                }
-            } catch (PDOException $e) { echo $e->getMessage(); }
-        ?>
-        <br> </br>
-        <p> <a href="user_aggiunta_pizze.php" class='form-control btn btn-primary' style='width: 500px;'>Aggiungi un'altra pizza all'ordine</a> </p>
-        <p> <a href="user.php" class='form-control btn btn-primary' style='width: 500px;'>Completa l'ordine </a></p>
-        
+
+                       try {
+                           $dbconn = db_connection();
+                           $st = $dbconn->prepare('select idpizza, nome, prezzo from pizze');
+                           $st->execute();
+                           echo "<form action='esegui_scelta.php' method='post'>";
+                           foreach($st as $rec) {
+                                echo "<input type='radio' class='radio-inline' name='idpizza' value='$rec[idpizza]'>$rec[idpizza] $rec[nome], $rec[prezzo] euro<br>";
+                           }
+                           echo"<br> </br>";
+                           echo"<tr><td>Quantità: </td><td><input class='btn btn-default' type='int' name='numeropizze' value='1'></td></tr>";
+                           echo "<br></br>";
+                           echo"<input type='submit' class='form-control btn btn-primary' style='width: 500px;' value='Procedi'>";
+                           echo "</form>";
+                        } catch (PDOException $e) { echo $e->getMessage(); }
+                    
+                ?>
+            </div>
+        </div>
     </body>
 </html>
-        
