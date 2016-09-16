@@ -103,6 +103,9 @@
     else if ($_GET['errore'] == 'ordinevecchionumpizze') {
         echo "<p style:'text-align:center;'> <font color=red face=arial><b>L'ordine è vecchio! Non puoi modificare le pizze!</b></font></p>";
     }
+    else if ($_GET['msg'] == 'cancellazioneavvenutavecchio') {
+        echo "<p style:'text-align:center;'> <font color=red face=arial><b>Ordine vecchio eliminato con successo!</b></font></p>";
+    }
 ?>
     
 <br>
@@ -136,7 +139,7 @@
                     <td><a href='admin_modifica_ordine.php?usr=$rec[login]&ido=$rec[idordine]'>
                         <button class='form-control btn btn-primary' name='modifica' style='text-align:center;'>Modifica ordine</button>
                     </td>
-                    <td><a href='admin_cancella_ordini.php?usr=$rec[login]&ido=$rec[idordine]&gc=$_GET[giornoconsegna]'>
+                    <td><a href='admin_cancella_ordini.php?usr=$rec[login]&ido=$rec[idordine]&gc=$rec[giornoconsegna]'>
                         <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Cancella ordine</button>
                     </td>
                 </tr>";

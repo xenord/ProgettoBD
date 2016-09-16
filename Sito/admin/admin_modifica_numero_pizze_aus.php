@@ -51,7 +51,7 @@
     $today_time = strtotime($date);
     $expire_time = strtotime($_GET['gico']);
 
-    if ($expire_dt < $today_dt) {
+    if ($expire_time < $today_time) {
         header('Location:admin_lista_ordini.php?errore=ordinevecchionumpizze');
     }
     else {

@@ -53,13 +53,13 @@
         $today_time = strtotime($date);
         $expire_time = strtotime($_GET['gc']);
 
-        if ($expire_dt < $today_dt) {
+        if ($expire_time < $today_time) {
             $statement = $dbconn->prepare('delete from pizzecontenute where idordine=?');
             $statement->execute(array($_GET['ido']));
             $rec = $statement->fetch();
             $state = $dbconn->prepare('select cancella_ordine(?,?)');
-            $state->execute(array($_SESSION['login'],$_GET['ido']));
-            header('Location:user_lista_ordini.php?msg=cancellazioneavvenuta');
+            $state->execute(array($_GET['usr'],$_GET['ido']));
+            header('Location:admin_lista_ordini.php?msg=cancellazioneavvenutavecchio');
         }
         else {
             foreach ($statem as $key) {
