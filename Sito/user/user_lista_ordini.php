@@ -77,6 +77,15 @@
 
 
 <!-- In Evidenza -->
+<?php
+    if ($_GET['msg'] == 'ordineannullato') {
+        echo "<p style:'text-align:center;'> <font color=#00bb00 face=arial><b>Ordine annullato e magazzino riaggiornato!</b></font></p>";
+    }
+    else if ($_GET['msg'] =='cancellazioneavvenuta') {
+        echo "<p style:'text-align:center;'> <font color=#00bb00 face=arial><b>Ordine vecchio cancellato dalla lista ordini!</b></font></p>";
+        echo "<p style:'text-align:center;'> <font color=red face=arial><b>Gli ordini vecchi sono già stati consegnati quindi il magazzino non verrà riaggiornato</b></font></p>";
+    }
+?>
     
 <br>
 <br>       
@@ -109,7 +118,7 @@
                             
                             </form>
                         </td>
-                        <td><a href='user_cancella_ordini.php?ido=$rec[idordine]'>
+                        <td><a href='user_cancella_ordini.php?ido=$rec[idordine]&gc=$rec[giornoconsegna]'>
                             <button class='form-control btn btn-primary' name='vedi_pizze' style='text-align:center;'>Cancella ordine</button>
                         </td>
                     </tr>";           
