@@ -53,57 +53,7 @@
 
             <!-- Modulo Registrazione -->
             <?php
-            /*
-                require "functions.php";
 
-                if($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-                    $loginErr = $nomeErr = $cognomeErr = $indirizzoErr = $passwordErr = "";
-                    $login = $nome = $cognome = $indirizzo = $password =  "";
-                    $telefonoErr = 0;
-                    $telefono = 0;
-
-                    if (empty($_POST["login"])) {
-                        $loginErr = "Username mancante!";
-                    }  
-                    if (empty($_POST["nome"])) {
-                        $nomeErr = "Nome mancante!";
-                    }  
-                    if (empty($_POST["cognome"])) {
-                        $cognomeErr = "Cognome mancante!";
-                    }
-                    if (empty($_POST["indirizzo"])) {
-                        $indirizzoErr = "Indirizzo mancante!";
-                    }
-                    if (empty($_POST["password"])) {
-                        $passwordErr = "Password mancante!";
-                    }
-                    if (empty($_POST["telefono"])) {
-                        $telefonoErr = "N° telefono mancante!";
-                    }
-                    else {
-                    try{  
-                        $dbconn = db_connection();
-                        $statement = $dbconn->prepare('select count (*) from utenti where login = ?');
-                        $statement->execute(array($_POST['login']));
-                        $rec = $statement->fetch();
-                        if ($rec[0] == 1) {               
-                            header('Location:registrazione.php?errore=utenteesistente');
-                        }
-                        else{
-                            session_start();
-                            $_SESSION['login'] = $_POST['login'];
-
-                            inserisci_utente($dbconn);
-                            echo "<font color=darkgreen face=arial><b>Registrazione effettuata</b></font><br>";
-                        }
-                    } catch (PDOException $e) { echo $e->getMessage(); }
-                }
-                }
-                else {
-                    $error = "Questo non dovrebbe succedere!";
-                }
-                */
             ?>
 
         </ul>
@@ -260,33 +210,7 @@
 
 
 
-<!-- Tag Sociali + gerarchia -->
-<div class="container hidden-print">
-    <div class="row">
-    <hr class="featurette-divider">
-        <!-- gerarchia -->
-    <div class="col-lg-6 col-md-6 col-sm-12 ">        
-        <p><a class="btn btn-lg btn-default gerarchia-btn" href="#" role="button">Gerarchia del sito</a></p>
-        </div>
-        <!-- TAG SOCIALI -->
-    <div class="col-lg-6 col-md-6 hidden-xs hidden-sm hidden-print tag-sociali">
-        <!-- Inseriamo un nuovo div di classe panel panel-default -->
-        <div class="panel panel-default">
-            
-            <div class="panel-heading">
-                <h3 class="panel-title">Tag Sociali</h3>
-            </div>
-            <div class="panel-body">
-                <h2><a href="index.php">Pizzeria</a></h2>
 
-                <h4><a href="pizze.php">Margherita</a></h4>
-
-                <h2><a href="ordini.php">Ordina Adesso!</a></h2>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
     
 
 <!-- Footer -->
@@ -295,7 +219,7 @@
         <hr class="featurette-divider">
         <p class="pull-right"><a href="index.php">Torna su</a></p>
 
-        <p>© 2016, Basi Di Dati, Pizzeria Online <a href="contacts.html">Contatti</a></p>
+        <p>© 2016, Basi Di Dati, Pizzeria Online
 
     </footer>
 </div>
