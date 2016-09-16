@@ -61,7 +61,7 @@
                     echo "<font color=crimson><b>Inserisci il nome della pizza</b></font><br>";
                 }
             ?>
-            <form action="admin.ricerca.php" method="post" class="navbar-form navbar-right" role="search">
+            <form action="admin_ricerca.php" method="post" class="navbar-form navbar-right" role="search">
                 <!-- Campo compilabile -->
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Cerca pizza" name ="pizzasearch">
