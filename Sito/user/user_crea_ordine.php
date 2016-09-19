@@ -52,6 +52,10 @@
                     if($_GET['errore'] == 'ricercavuota') {
                         echo "<font color=crimson><b>Inserisci il nome della pizza</b></font><br>";
                     }
+                    
+                    elseif($_GET['errore']=='campivuoti') {
+                        echo "<font color=crimson><b>Non hai inserito l'indirizzo</b></font><br>";
+                    }
                 ?>
                 <form action="user_ricerca.php" method="post" class="navbar-form navbar-right" role="search">
                     <!-- Campo compilabile -->
@@ -72,56 +76,54 @@
         <div class="container" style="width: 500px";>
  
             <?php 
-                $date=getdate();
-
-                /* Giorno */
-                $days=count_days();
-                echo '<label>Giorno consegna</label><br>';
-                echo"<select name='days' class='form-control'>";
-                for($count=$date['mday'];$count<=$days;$count++) {
-                    echo"<option value='$count'>$count </option>";
-                }    
-                echo"</select>";
-
-                /* Mese */
-                echo"<select name='months' class='form-control'>";
-                for($count=$date['mon'];$count<=12;$count++)
+                else
                 {
-                    echo"<option value='$count'>$count </option>";
-                }
-                echo"</select>";
-
-                /* Anno */
-                echo"<select name='year' class='form-control'>"; 
-                echo"<option value='$date[year]'>$date[year] </option>";
-                echo"</select><br>";
-
-                echo "<br><br>";
-
-                /* Ore */ 
-                echo '<label>Ora consegna</label><br>';            
-                echo"<select name='hours' class='form-control'>";
-                for($count=18;$count<=22;$count++) {
-                    echo"<option value='$count'>$count </option>";
+                    $date=getdate();
+    
+                    /* Giorno */
+                    $days=count_days();
+                    echo '<label>Giorno consegna</label><br>';
+                    echo"<select name='days' class='form-control'>";
+                    for($count=$date['mday'];$count<=$days;$count++) {
+                        echo"<option value='$count'>$count </option>";
+                    }    
+                    echo"</select>";
+    
+                    /* Mese */
+                    echo"<select name='months' class='form-control'>";
+                    for($count=$date['mon'];$count<=12;$count++)
+                    {
+                        echo"<option value='$count'>$count </option>";
+                    }
+                    echo"</select>";
+    
+                    /* Anno */
+                    echo"<select name='year' class='form-control'>"; 
+                    echo"<option value='$date[year]'>$date[year] </option>";
+                    echo"</select><br>";
+    
+                    echo "<br><br>";
+    
+                    /* Ore */ 
+                    echo '<label>Ora consegna</label><br>';            
+                    echo"<select name='hours' class='form-control'>";
+                    for($count=18;$count<=22;$count++) {
+                        echo"<option value='$count'>$count </option>";
+                    }    
+                    echo"</select>";
+    
+                    /* Minuti */
+                    echo"<select name='minutes' class='form-control'>";
+                    echo"<option value='00'>00</option>";
+                    echo"<option value='30'>30</option>";
+                    echo"</select><br>";
+                    echo "<br><br>"; 
                 }    
-                echo"</select>";
-
-                /* Minuti */
-                echo"<select name='minutes' class='form-control'>";
-                echo"<option value='00'>00</option>";
-                echo"<option value='30'>30</option>";
-                echo"</select><br>";
-                echo "<br><br>";                     
             ?>
 
             <label>Indirizzo consegna</label>
             <br>
             <input type="text" name="indirizzo">    
-            <?php
-                if ($_GET['errore']=='campivuoti') {
-                    echo "<font color=crimson><b>Non hai inserito l'indirizzo</b></font><br>";
-                }
-            ?>
             <br>
             <br>
             <br>
