@@ -76,8 +76,8 @@
         <div class="container" style="width: 500px";>
  
             <?php 
-                if($_GET['errore'] != 'ricercavuota' && $_GET['errore']!='campivuoti')
-                {
+                
+                
                     $date=getdate();
     
                     /* Giorno */
@@ -118,7 +118,7 @@
                     echo"<option value='30'>30</option>";
                     echo"</select><br>";
                     echo "<br><br>"; 
-                }    
+                    
             ?>
 
             <label>Indirizzo consegna</label>
