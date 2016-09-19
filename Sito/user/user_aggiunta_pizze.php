@@ -24,7 +24,9 @@
     ?>
 
     <body>
-        <button class='form-control btn btn-primary' style='text-align:center; width:500px;'>Ritorna alla pagina precedente</button>
+        <a href='user_lista_ordini.php'>
+        <button class='form-control btn btn-primary' style='text-align:center; width:500px;'>Gestione ordine</button>
+        </a>
         <div class="container">
             <div class="row">
                 <br></br>
