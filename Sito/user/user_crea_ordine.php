@@ -52,10 +52,6 @@
                     if($_GET['errore'] == 'ricercavuota') {
                         echo "<font color=crimson><b>Inserisci il nome della pizza</b></font><br>";
                     }
-                    
-                    elseif($_GET['errore']=='campivuoti') {
-                        echo "<font color=crimson><b>Non hai inserito l'indirizzo</b></font><br>";
-                    }
                 ?>
                 <form action="user_ricerca.php" method="post" class="navbar-form navbar-right" role="search">
                     <!-- Campo compilabile -->
@@ -129,7 +125,14 @@
             <br>
             <button type="submit" class='form-control btn btn-primary' style='text-align:center;'>Continua con l'aggiunta delle pizze</button>
         </div>
-    </form>  
+    </form>
+    <div class="container">
+        <?php
+            if($_GET['errore']=='campivuoti') {                 
+                echo "<p style:'text-align:center;'> <font color=red face=arial><b>Non hai inserito l'indirizzo</b></font></p>";
+            }
+        ?> 
+    </div>
                      
                
         

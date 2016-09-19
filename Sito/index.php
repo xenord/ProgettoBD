@@ -116,8 +116,14 @@
             </div>
             <div class="modal-footer">
                 <button type="Submit" value="Accedi" class="form-control btn btn-primary">Accedi</button>
+
             </div>
             </form>
+            <?php
+                if($_GET['errore'] == 'campivuotilogin') {
+                    echo "<font color=crimson><b>Inserisci le credenziali</b></font><br>";
+                }
+            ?>
         </div>
     </div>
 </div>
