@@ -37,6 +37,12 @@
                     {
                         echo "<font color=red><b>Seleziona una pizza</b></font><br>";
                     }
+                    elseif($_GET['errore']=="quantitainvalida")
+                    {
+                        
+                        echo "<font color=red><b>Quantità invalida</b></font><br>";
+                        
+                    }
                     
 
                        try {
