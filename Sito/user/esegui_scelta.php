@@ -29,7 +29,7 @@
         <h3>E' possibile scegliere solo un tipo di pizza per volta</h3>
         <br></br>
         <?php
-            if(empty($_POST['pizza']))
+            if(!isset($_POST['idpizza']))
             {
                 header('Location:user_aggiunta_pizze.php?errore=nessunapizza');
             }
