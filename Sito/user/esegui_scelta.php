@@ -33,6 +33,11 @@
             {
                 header('Location:user_aggiunta_pizze.php?errore=nessunapizza');
             }
+            elseif($_POST['numeropizze']<=0)
+            {
+                header('Location:user_aggiunta_pizze.php?errore=quantitainvalida');
+                
+            }
             else
             {
                 try {
