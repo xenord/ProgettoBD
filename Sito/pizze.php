@@ -227,7 +227,7 @@
         <hr class="featurette-divider">
         <p class="pull-right"><a href="pizze.php">Torna su</a></p>
 
-        <p>© 2016, Basi Di Dati, Pizzeria Online <a href="contacts.html">Contatti</a></p>
+        <p>© 2016, Basi Di Dati, Pizzeria Online</p>
 
     </footer>
 </div>
