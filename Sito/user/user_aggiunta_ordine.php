@@ -1,7 +1,7 @@
 <?php  
     require "../functions.php"; 
     verifica_accesso();
-    if (!isset($_POST['indirizzo'])) {
+    if (isset($_POST['indirizzo'])) {
         header('Location:user_crea_ordine.php?errore=campivuoti');
     }
     else
