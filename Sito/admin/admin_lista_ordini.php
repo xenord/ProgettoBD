@@ -106,6 +106,9 @@
     else if ($_GET['msg'] == 'cancellazioneavvenutavecchio') {
         echo "<p style:'text-align:center;'> <font color=red face=arial><b>Ordine vecchio eliminato con successo!</b></font></p>";
     }
+    else if ($_GET['msg'] == 'cancellazionepizzasavvenuta') {
+        echo "<p style:'text-align:center;'> <font color=#00bb00 face=arial><b>Pizza cancellata avvenuta con successo!</b></font></p>";
+    }
 ?>
     
 <br>

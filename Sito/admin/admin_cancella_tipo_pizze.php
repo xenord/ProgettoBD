@@ -67,7 +67,7 @@
            	}
     	   $state = $dbconn->prepare('delete from pizzecontenute where idordine = ? and idpizza = ?');
     	   $state->execute(array($_GET['idordine'],$_GET['codpizza']));
-    	   header('Location:admin_lista_ordini.php?msg=cancellazionesavvenuta');
+    	   header('Location:admin_lista_ordini.php?msg=cancellazionepizzasavvenuta');
         }
 	} catch (PDOException $e) { echo $e->getMessage(); }
 ?>
