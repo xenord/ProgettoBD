@@ -76,7 +76,7 @@
         <div class="container" style="width: 500px";>
  
             <?php 
-                else
+                if($_GET['errore'] != 'ricercavuota' && $_GET['errore']!='campivuoti')
                 {
                     $date=getdate();
     
