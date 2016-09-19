@@ -23,7 +23,7 @@
         ?>
 
         <a href='user_lista_ordini.php'>
-        <button class='form-control btn btn-primary' style='text-align:left; width:500px;'>Ritorna alla pagina precedente</button>
+        <button class='form-control btn btn-primary' style='text-align:center; width:500px;'>Ritorna alla pagina precedente</button>
         </a>
         <div class="container">
             <br></br>
